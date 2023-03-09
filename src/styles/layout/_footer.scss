@@ -1,0 +1,20 @@
+.game-app {
+  &_footer {
+    position: relative;
+    width: 100%;
+    min-height: 10%;
+    padding: 2rem 1rem;
+    background-color: $color-background;
+
+    &__copyright {
+      position: absolute;
+      bottom: 1.5rem;
+      left: 0;
+      right: 0;
+      margin-left: auto;
+      margin-right: auto;
+      font-size: 1.2rem;
+      text-align: center;
+    }
+  }
+}
