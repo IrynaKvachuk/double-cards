@@ -1,0 +1,82 @@
+.game-app_title-logo {
+  path {
+    stroke-linecap: round;
+  }
+}
+
+.game-app_title-logo {
+  &--medium {
+    // D
+    & path:nth-child(2) {
+      stroke-dasharray: 146;
+      stroke-dashoffset: 146;
+      animation: title-logo-animation 3s ease forwards;
+    }
+    // o
+    & path:nth-child(3) {
+      stroke-dasharray: 104;
+      stroke-dashoffset: 104;
+      animation: title-logo-animation 2s ease forwards 0.2s;
+    }
+    // u
+    & path:nth-child(4) {
+      stroke-dasharray: 103;
+      stroke-dashoffset: 103;
+      animation: title-logo-animation 2s ease forwards 0.4s;
+    }
+    // b
+    & path:nth-child(5) {
+      stroke-dasharray: 132;
+      stroke-dashoffset: 132;
+      animation: title-logo-animation 2s ease forwards 0.6s;
+    }
+    // l
+    & path:nth-child(6) {
+      stroke-dasharray: 59;
+      stroke-dashoffset: 59;
+      animation: title-logo-animation 2s ease forwards 0.8s;
+    }
+    // e
+    & path:nth-child(7) {
+      stroke-dasharray: 127;
+      stroke-dashoffset: 127;
+      animation: title-logo-animation 2s ease forwards 1s;
+    }
+    // c
+    & path:nth-child(8) {
+      stroke-dasharray: 92;
+      stroke-dashoffset: 92;
+      animation: title-logo-animation 1s ease forwards 1.1s;
+    }
+    // a
+    & path:nth-child(9) {
+      stroke-dasharray: 118;
+      stroke-dashoffset: 118;
+      animation: title-logo-animation 1s ease forwards 1.2s;
+    }
+    // r
+    & path:nth-child(10) {
+      stroke-dasharray: 62;
+      stroke-dashoffset: 62;
+      animation: title-logo-animation 1s ease forwards 1.3s;
+    }
+    // d
+    & path:nth-child(11) {
+      stroke-dasharray: 132;
+      stroke-dashoffset: 132;
+      animation: title-logo-animation 1s ease forwards 1.4s;
+    }
+    // s
+    & path:nth-child(12) {
+      stroke-dasharray: 101;
+      stroke-dashoffset: 101;
+      animation: title-logo-animation 1s ease forwards 1.5s;
+    }
+  }
+}
+
+@keyframes title-logo-animation {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
