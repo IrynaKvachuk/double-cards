@@ -1,0 +1,34 @@
+.game-app {
+  &_cloud-layout {
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+
+    & > div {
+      margin: 1rem 0;
+    }
+  }
+}
+
+@keyframes animateCloud {
+  0% {
+    margin-left: -1000px;
+  }
+
+  100% {
+    margin-left: 100%;
+  }
+}
+
+@for $i from 1 through 7 {
+  $randomNumber: random();
+  $animationDuration: random();
+  #cloud#{$i} {
+    margin-top: 3rem;
+    transform: scale($randomNumber + 0.1);
+    animation: animateCloud #{$animationDuration * 10 + 20}s linear infinite;
+  }
+}
