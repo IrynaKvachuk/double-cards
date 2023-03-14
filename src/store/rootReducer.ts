@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-// import currencyCounterReducer from '../features/currencyCounter/currencyCounterReducer';
+import doubleCardsReducer from '../features/DoubleCards/DoubleCardsReducer';
 
 export const rootReducer = combineReducers({
-  // currencyList: currencyListReducer,
+  doubleCards: doubleCardsReducer
 });
 
 export type RootStateT = ReturnType<typeof rootReducer>;
