@@ -6,6 +6,7 @@ export const DOUBLE_CARDS_CHOOSE_FIRST_CARD = 'DOUBLE_CARDS/CHOOSE_FIRST_CARD';
 export const DOUBLE_CARDS_CHOOSE_SECOND_CARD = 'DOUBLE_CARDS/CHOOSE_SECOND_CARD';
 export const DOUBLE_CARDS_CLOSE_CARDS = 'DOUBLE_CARDS/CLEAR_CARD';
 export const DOUBLE_CARDS_MATCH_CARDS = 'DOUBLE_CARDS/MATCH_CARDS';
+export const DOUBLE_CARDS_DISABLE_ALL_CARDS = 'DOUBLE_CARDS/DISABLE_ALL_CARDS';
 
 interface SetCardsDeck {
   type: typeof DOUBLE_CARDS_SET_CARDS_DECK;
@@ -36,10 +37,16 @@ interface MatchCards {
   payload: { cardToMatch: CardType };
 }
 
+interface DisableAll {
+  type: typeof DOUBLE_CARDS_DISABLE_ALL_CARDS;
+  payload: { disableAll: boolean };
+}
+
 export type DoubleCardsTypes =
   | SetCardsDeck
   | SetCardData
   | ChooseFirstCard
   | ChooseSecondCard
   | CloseCards
-  | MatchCards;
+  | MatchCards
+  | DisableAll;

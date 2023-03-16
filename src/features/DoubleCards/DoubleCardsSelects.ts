@@ -9,3 +9,7 @@ export const selectFirstCard = (state: RootStateT): CardType | null => state.dou
 
 export const selectSecondCard = (state: RootStateT): CardType | null =>
   state.doubleCards.secondCard;
+
+export const selectDisableAllCards = (state: RootStateT): boolean => state.doubleCards.disableAll;
+
+export const selectGameFinished = (state: RootStateT): boolean => state.doubleCards.gameFinished;

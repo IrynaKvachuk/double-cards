@@ -6,7 +6,8 @@ import {
   DOUBLE_CARDS_MATCH_CARDS,
   DOUBLE_CARDS_SET_CARDS_DECK,
   DOUBLE_CARDS_CHOOSE_FIRST_CARD,
-  DOUBLE_CARDS_CHOOSE_SECOND_CARD
+  DOUBLE_CARDS_CHOOSE_SECOND_CARD,
+  DOUBLE_CARDS_DISABLE_ALL_CARDS
 } from './DoubleCardsTypes';
 
 export const setCardsDeck = (input: CardsDeck): DoubleCardsTypes => ({
@@ -36,4 +37,9 @@ export const closeCards = (): DoubleCardsTypes => ({
 export const matchCards = (input: CardType): DoubleCardsTypes => ({
   type: DOUBLE_CARDS_MATCH_CARDS,
   payload: { cardToMatch: input }
+});
+
+export const disableAll = (input: boolean): DoubleCardsTypes => ({
+  type: DOUBLE_CARDS_DISABLE_ALL_CARDS,
+  payload: { disableAll: input }
 });
