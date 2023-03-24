@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import FireWorks from '../../../components/FireWorks';
 import { selectTurns } from '../../../features/DoubleCards/DoubleCardsSelects';
 import Modal from '../../../layout/Modal/Modal';
 import { onClose, refreshBestResult } from './utils';
@@ -26,6 +27,7 @@ const WinPopup = () => {
         <span>Turns: {doubleCardsTurns}</span>
         <span>Best result: {bestResult}</span>
       </div>
+      <FireWorks />
     </Modal>
   );
 };
