@@ -1,0 +1,19 @@
+.double-cards {
+  &_toolbar-top {
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &__info {
+      font-size: 2rem;
+      color: $color-font-dark-gray;
+    }
+
+    & .reload-btn {
+      width: 14.6rem;
+      height: 5rem;
+      padding: 0;
+    }
+  }
+}
