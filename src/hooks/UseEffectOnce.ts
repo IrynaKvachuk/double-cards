@@ -4,7 +4,8 @@ export const useEffectOnce = (effect: () => void | (() => void)) => {
   const destroyFunc = useRef<void | (() => void)>();
   const effectCalled = useRef(false);
   const renderAfterCalled = useRef(false);
-  const [val, setVal] = useState<number>(0);
+
+  const [effectOnceValue, setVal] = useState<number>(0);
 
   if (effectCalled.current) {
     renderAfterCalled.current = true;
@@ -18,11 +19,13 @@ export const useEffectOnce = (effect: () => void | (() => void)) => {
     }
 
     // this forces one render after the effect is run
-    setVal((val) => val + 1);
+    setVal((effectOnceValue) => effectOnceValue + 1);
 
     return () => {
       if (!renderAfterCalled.current) return;
       if (destroyFunc.current) destroyFunc.current();
     };
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 };
