@@ -1,0 +1,26 @@
+// UTILS
+@import './utils/variables';
+@import './utils/buttons';
+@import './utils/titleLogo';
+
+@import './utils/animations/shake';
+
+// BASE
+@import './base';
+
+// LAYOUT
+@import './layout/container';
+@import './layout/cloudLayout';
+@import './layout/header';
+@import './layout/footer';
+@import './layout/toolbarTop';
+@import './layout/modal';
+
+// PAGES
+@import './pages/doubleCards/doubleCards';
+@import './pages/doubleCards/toolbarTop';
+@import './pages/doubleCards/winPopup';
+
+// COMPONENTS
+@import './components/card';
+@import './components/fireworks';

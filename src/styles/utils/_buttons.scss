@@ -1,0 +1,56 @@
+.game-app {
+  &_btn {
+    --size: 2rem;
+    --transition-duration: 500ms;
+    --transition-scale-duration: 300ms;
+    --transition-easing: ease-out;
+
+    margin: 0.5rem 0;
+    padding: 1.2rem 1.4rem;
+
+    text-decoration: none;
+    color: $color-font-dark-gray;
+    font-size: var(--size);
+    font-weight: $font-weight-bold;
+    text-transform: uppercase;
+    border: 1px solid $color-font-light-gray;
+    background-color: rgba(245, 245, 245, 0.194);
+    backdrop-filter: blur(2px);
+    border-radius: 0.5rem;
+    box-shadow: 0px calc(var(--size) / 6) calc(var(--size) / 3) rgba(black, 0.1);
+
+    transition: transform var(--transition-duration) var(--transition-easing);
+    transition: scale var(--transition-scale-duration) var(--transition-easing);
+
+    overflow: hidden;
+    cursor: pointer;
+
+    &::before {
+      content: '';
+      background: rgba(white, 0.1);
+      width: 60%;
+      height: 100%;
+      top: 0%;
+      left: -125%;
+
+      transform: skew(45deg);
+
+      position: absolute;
+
+      transition: left var(--transition-duration) var(--transition-easing);
+    }
+
+    &:hover {
+      transform: scale(102%);
+      color: $color-font-dark-gray;
+
+      &::before {
+        left: 150%;
+      }
+    }
+
+    &:active {
+      transform: scale(96%);
+    }
+  }
+}
