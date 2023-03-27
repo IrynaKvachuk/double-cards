@@ -10,12 +10,14 @@ import { openModal } from '../../features/Modal/ModalActions';
 import store from '../../store';
 
 const cardsImages: { src: string; name: string; side: CardSide; matched: false }[] = [
-  { src: '/cards/helmet-1.png', name: 'helmet', side: 'back', matched: false },
-  { src: '/cards/potion-1.png', name: 'potion', side: 'back', matched: false },
-  { src: '/cards/ring-1.png', name: 'ring', side: 'back', matched: false },
-  { src: '/cards/scroll-1.png', name: 'scroll', side: 'back', matched: false },
-  { src: '/cards/shield-1.png', name: 'shield', side: 'back', matched: false },
-  { src: '/cards/sword-1.png', name: 'sword', side: 'back', matched: false }
+  { src: '/cards/eucaliptus.png', name: 'eucaliptus', side: 'back', matched: false },
+  { src: '/cards/palm.png', name: 'palm', side: 'back', matched: false },
+  { src: '/cards/bird.png', name: 'bird', side: 'back', matched: false },
+  // { src: '/cards/spiral.png', name: 'spiral', side: 'back', matched: false },
+  // { src: '/cards/squers.png', name: 'squers', side: 'back', matched: false },
+  { src: '/cards/flower.png', name: 'flower', side: 'back', matched: false },
+  { src: '/cards/sun.png', name: 'sun', side: 'back', matched: false },
+  { src: '/cards/waves.png', name: 'waves', side: 'back', matched: false }
 ];
 
 export const shuffleCards = (): CardsDeck => {
