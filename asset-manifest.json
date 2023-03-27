@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/double-cards/static/css/main.e45a51d2.css",
+    "main.js": "/double-cards/static/js/main.d87293a3.js",
+    "static/media/main-background.jpg": "/double-cards/static/media/main-background.b48ca2d07871fa7f0f27.jpg",
+    "index.html": "/double-cards/index.html",
+    "main.e45a51d2.css.map": "/double-cards/static/css/main.e45a51d2.css.map",
+    "main.d87293a3.js.map": "/double-cards/static/js/main.d87293a3.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e45a51d2.css",
+    "static/js/main.d87293a3.js"
+  ]
+}
