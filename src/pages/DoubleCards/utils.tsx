@@ -10,14 +10,24 @@ import { openModal } from '../../features/Modal/ModalActions';
 import store from '../../store';
 
 const cardsImages: { src: string; name: string; side: CardSide; matched: false }[] = [
-  { src: '/cards/eucaliptus.png', name: 'eucaliptus', side: 'back', matched: false },
-  { src: '/cards/palm.png', name: 'palm', side: 'back', matched: false },
-  { src: '/cards/bird.png', name: 'bird', side: 'back', matched: false },
+  {
+    src: `${process.env.PUBLIC_URL}/cards/eucaliptus.png`,
+    name: 'eucaliptus',
+    side: 'back',
+    matched: false
+  },
+  { src: `${process.env.PUBLIC_URL}/cards/palm.png`, name: 'palm', side: 'back', matched: false },
+  { src: `${process.env.PUBLIC_URL}/cards/bird.png`, name: 'bird', side: 'back', matched: false },
   // { src: '/cards/spiral.png', name: 'spiral', side: 'back', matched: false },
   // { src: '/cards/squers.png', name: 'squers', side: 'back', matched: false },
-  { src: '/cards/flower.png', name: 'flower', side: 'back', matched: false },
-  { src: '/cards/sun.png', name: 'sun', side: 'back', matched: false },
-  { src: '/cards/waves.png', name: 'waves', side: 'back', matched: false }
+  {
+    src: `${process.env.PUBLIC_URL}/cards/flower.png`,
+    name: 'flower',
+    side: 'back',
+    matched: false
+  },
+  { src: `${process.env.PUBLIC_URL}/cards/sun.png`, name: 'sun', side: 'back', matched: false },
+  { src: `${process.env.PUBLIC_URL}/cards/waves.png`, name: 'waves', side: 'back', matched: false }
 ];
 
 export const shuffleCards = (): CardsDeck => {

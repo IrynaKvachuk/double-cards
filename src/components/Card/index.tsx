@@ -24,7 +24,7 @@ const Card: React.FC<Props> = (props: Props) => {
         onClick={(event) => openedCardClick({ event })}
       />
       <img
-        src="/card-cover.png"
+        src={`${process.env.PUBLIC_URL}/card-cover.png`}
         className="double-cards_card--back"
         alt="card back"
         onClick={(event) =>
