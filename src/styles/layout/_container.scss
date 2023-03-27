@@ -26,13 +26,27 @@
       filter: blur(10px);
       margin: -20px;
     }
+  }
+}
 
-    @media screen and (min-width: $breakpoint-max-tablet) {
-      width: 70rem;
+@media screen and (min-width: $breakpoint-max-tablet) {
+  .game-app {
+    &_container {
+      max-width: 70rem;
+      height: auto;
+      margin: 0.5rem;
+      padding: 1.2rem;
     }
+  }
+}
 
-    @media screen and (max-width: $breakpoint-max-small-screen) {
-      width: 40rem;
+@media screen and (max-width: $breakpoint-max-small-screen) {
+  .game-app {
+    &_container {
+      max-width: 96vw;
+      height: auto;
+      margin: 0.2rem;
+      padding: 1rem;
     }
   }
 }
