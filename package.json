@@ -2,7 +2,7 @@
   "name": "double-cards",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://irynakvachuk.github.io/double-cards/",
+  "homepage": "https://irynakvachuk.github.io/double-cards",
   "dependencies": {
     "@types/jest": "^27.0.1",
     "@types/node": "^16.7.13",
