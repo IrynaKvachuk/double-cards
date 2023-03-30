@@ -54,7 +54,8 @@ export const runFireworks = (props: RunFireworks) => {
   lastRun = performance.now();
 
   cContext.fillStyle = 'rgba(0,0,0,0.1)';
-  // cContext.fillRect(0, 0, cWidth, cHeight); <-- for black background
+  cContext.fillRect(0, 0, cWidth, cHeight);
+  // <-- for black background
   cContext.clearRect(0, 0, cWidth, cHeight);
 
   // add new parent shell
