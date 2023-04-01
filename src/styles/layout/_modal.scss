@@ -43,8 +43,6 @@
 
   @media (max-width: $breakpoint-max-tablet) {
     &__content {
-      // width: 100vw;
-      // height: 100vh;
       display: grid;
       place-items: center;
     }

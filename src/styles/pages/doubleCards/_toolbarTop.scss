@@ -8,6 +8,19 @@
     &__info {
       font-size: 2rem;
       color: $color-font-dark-gray;
+
+      & .double-cards_results {
+        display: flex;
+        flex-direction: column;
+
+        &__time {
+          margin-left: 1rem;
+          font-size: 1.5rem;
+          border-radius: 0.5rem;
+          text-align: center;
+          color: $color-font-light-gray;
+        }
+      }
     }
 
     & .reload-btn {
