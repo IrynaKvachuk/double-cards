@@ -1,19 +1,25 @@
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import FireWorks from '../../../components/FireWorks';
-import { selectTurns } from '../../../features/DoubleCards/DoubleCardsSelects';
+import FireWorkCSS from '../../../components/FireworkCSS';
+import { selectGameTime, selectTurns } from '../../../features/DoubleCards/DoubleCardsSelects';
 import Modal from '../../../layout/Modal/Modal';
 import { onClose, refreshBestResult } from './utils';
 
+export type GameResult = {
+  time: number;
+  turns: number;
+};
+
 const WinPopup = () => {
   const [isOpen, setIsOpen] = useState<boolean>(true);
-  const [bestResult, setBestResult] = useState<number>(0);
+  const [gameResult, setGameResult] = useState<GameResult>({ time: 0, turns: 0 });
 
-  const doubleCardsTurns = useSelector(selectTurns);
+  const time = useSelector(selectGameTime);
+  const turns = useSelector(selectTurns);
 
   useEffect(() => {
-    refreshBestResult({ newResult: doubleCardsTurns, setBestResult });
-  }, [doubleCardsTurns]);
+    refreshBestResult({ newResult: { time, turns }, setGameResult });
+  }, [time, turns]);
 
   return (
     <Modal
@@ -24,10 +30,15 @@ const WinPopup = () => {
     >
       <h1 className="win-popup_title">Win!</h1>
       <div className="win-popup_info">
-        <span>Turns: {doubleCardsTurns}</span>
-        <span>Best result: {bestResult}</span>
+        <span>Time: {time}</span>
+        <span>Turns: {turns}</span>
+        <div>
+          <h2>Best result</h2>
+          <span>Time: {gameResult.time}</span>
+          <span>Turns: {gameResult.turns}</span>
+        </div>
       </div>
-      <FireWorks />
+      <FireWorkCSS />
     </Modal>
   );
 };

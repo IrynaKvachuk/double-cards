@@ -1,3 +1,4 @@
+import { GameResult } from '.';
 import { Dispatch, SetStateAction } from '../../../features/_common/types';
 import { stringifyDataToLocalStorage, tryParseDataFromLocalStorage } from '../../../utils';
 
@@ -14,19 +15,24 @@ export const onClose = (props: OnClose) => {
 };
 
 type RefreshBestResult = {
-  newResult: number;
-  setBestResult: Dispatch<SetStateAction<number>>;
+  newResult: GameResult;
+  setGameResult: Dispatch<SetStateAction<GameResult>>;
 };
 
 export const refreshBestResult = (props: RefreshBestResult) => {
-  const { newResult, setBestResult } = props;
-  const bestResult = tryParseDataFromLocalStorage().bestResult || 0;
+  const { newResult, setGameResult } = props;
+  const { time, turns } = newResult;
 
-  if (!bestResult || newResult < bestResult) {
-    stringifyDataToLocalStorage({ bestResult: newResult });
-    setBestResult(newResult);
-  }
+  const prevResult: GameResult = tryParseDataFromLocalStorage().bestResult;
+  const bestResult = {
+    time: time > prevResult?.time ? prevResult.time : time,
+    turns: turns > prevResult?.turns ? prevResult.turns : turns
+  };
 
-  setBestResult(bestResult);
+  stringifyDataToLocalStorage({
+    bestResult
+  });
+  setGameResult(bestResult);
+
   return;
 };
