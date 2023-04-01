@@ -5,6 +5,7 @@ import {
   DOUBLE_CARDS_SET_CARD_DATA,
   DOUBLE_CARDS_MATCH_CARDS,
   DOUBLE_CARDS_SET_CARDS_DECK,
+  DOUBLE_CARDS_SET_TIME,
   DOUBLE_CARDS_CHOOSE_FIRST_CARD,
   DOUBLE_CARDS_CHOOSE_SECOND_CARD,
   DOUBLE_CARDS_DISABLE_ALL_CARDS
@@ -18,6 +19,11 @@ export const setCardsDeck = (input: CardsDeck): DoubleCardsTypes => ({
 export const setCardData = (input: CardType): DoubleCardsTypes => ({
   type: DOUBLE_CARDS_SET_CARD_DATA,
   payload: { card: input }
+});
+
+export const setGameTime = (input: number): DoubleCardsTypes => ({
+  type: DOUBLE_CARDS_SET_TIME,
+  payload: { time: input }
 });
 
 export const chooseFirstCard = (input: CardType): DoubleCardsTypes => ({

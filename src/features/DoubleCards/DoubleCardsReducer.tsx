@@ -1,6 +1,7 @@
 import { Reducer } from 'redux';
 import { CardsDeck, CardType } from '../Card/CardTypes';
 import {
+  DOUBLE_CARDS_SET_TIME,
   DOUBLE_CARDS_CHOOSE_FIRST_CARD,
   DOUBLE_CARDS_CHOOSE_SECOND_CARD,
   DOUBLE_CARDS_CLOSE_CARDS,
@@ -13,8 +14,10 @@ export type DoubleCardsState = {
   cardsDeck: CardsDeck;
   firstCard: CardType | null;
   secondCard: CardType | null;
+  time: number;
   turns: number;
   disableAll: boolean;
+  gameReloaded: boolean;
   gameFinished: boolean;
 };
 
@@ -22,8 +25,10 @@ const initialState: DoubleCardsState = {
   cardsDeck: [],
   firstCard: null,
   secondCard: null,
+  time: 0,
   turns: 0,
   disableAll: false,
+  gameReloaded: true,
   gameFinished: false
 };
 
@@ -51,9 +56,12 @@ const doubleCardsReducer: Reducer<DoubleCardsState> = (state = initialState, act
       return {
         ...state,
         cardsDeck,
+        gameReloaded: false,
         gameFinished: !gameNotFinished
       };
     }
+    case DOUBLE_CARDS_SET_TIME:
+      return { ...state, time: action.payload.time };
     case DOUBLE_CARDS_CHOOSE_FIRST_CARD:
       return { ...state, firstCard: action.payload.firstCard };
     case DOUBLE_CARDS_CHOOSE_SECOND_CARD:
