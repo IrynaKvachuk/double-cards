@@ -1,5 +1,5 @@
 import { CardType } from '../../features/Card/CardTypes';
-import { DoubleCardsTurnCard } from '../../pages/DoubleCards/utils';
+import { DoubleCardsTurnCard } from '../../pages/DoubleCards/GameTable/utils';
 import { closedCardClick, openedCardClick } from './utils';
 
 export type OpenCard<P> = (props: P) => void;

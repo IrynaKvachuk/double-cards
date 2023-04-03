@@ -1,6 +1,6 @@
 import { OpenCard } from '.';
 import { CardType } from '../../features/Card/CardTypes';
-import { DoubleCardsTurnCard } from '../../pages/DoubleCards/utils';
+import { DoubleCardsTurnCard } from '../../pages/DoubleCards/GameTable/utils';
 
 type OpenedCardClick = {
   event: React.MouseEvent<HTMLImageElement>;
