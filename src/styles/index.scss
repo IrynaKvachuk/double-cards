@@ -17,8 +17,9 @@
 @import './layout/modal';
 
 // PAGES
-@import './pages/doubleCards/doubleCards';
-@import './pages/doubleCards/toolbarTop';
+@import './pages/doubleCards/gameTable';
+@import './pages/doubleCards/toobarTop/toolbarTop';
+@import './pages/doubleCards/toobarTop/actions/gridResize';
 @import './pages/doubleCards/winPopup';
 
 // COMPONENTS
