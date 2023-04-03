@@ -7,10 +7,13 @@ import {
   DOUBLE_CARDS_CLOSE_CARDS,
   DOUBLE_CARDS_DISABLE_ALL_CARDS,
   DOUBLE_CARDS_SET_CARDS_DECK,
-  DOUBLE_CARDS_SET_CARD_DATA
+  DOUBLE_CARDS_SET_CARD_DATA,
+  DOUBLE_CARDS_SET_GRID_SIZE,
+  GridSize
 } from './DoubleCardsTypes';
 
 export type DoubleCardsState = {
+  gridSize: GridSize;
   cardsDeck: CardsDeck;
   firstCard: CardType | null;
   secondCard: CardType | null;
@@ -22,6 +25,7 @@ export type DoubleCardsState = {
 };
 
 const initialState: DoubleCardsState = {
+  gridSize: { columnAmount: 2, rowAmount: 2 },
   cardsDeck: [],
   firstCard: null,
   secondCard: null,
@@ -47,8 +51,17 @@ const setDeckCard = (props: SetDeckCard) => {
 
 const doubleCardsReducer: Reducer<DoubleCardsState> = (state = initialState, action) => {
   switch (action.type) {
+    case DOUBLE_CARDS_SET_GRID_SIZE:
+      return {
+        ...state,
+        gridSize: { columnAmount: action.payload.columnAmount, rowAmount: action.payload.rowAmount }
+      };
     case DOUBLE_CARDS_SET_CARDS_DECK:
-      return { ...initialState, cardsDeck: action.payload.cardsDeck };
+      return {
+        ...initialState,
+        gridSize: { ...state.gridSize },
+        cardsDeck: action.payload.cardsDeck
+      };
     case DOUBLE_CARDS_SET_CARD_DATA: {
       const cardsDeck = setDeckCard({ cardsDeck: state.cardsDeck, card: action.payload.card });
       const gameNotFinished = cardsDeck.some((card) => !card.matched);

@@ -8,8 +8,15 @@ import {
   DOUBLE_CARDS_SET_TIME,
   DOUBLE_CARDS_CHOOSE_FIRST_CARD,
   DOUBLE_CARDS_CHOOSE_SECOND_CARD,
-  DOUBLE_CARDS_DISABLE_ALL_CARDS
+  DOUBLE_CARDS_DISABLE_ALL_CARDS,
+  DOUBLE_CARDS_SET_GRID_SIZE,
+  GridSize
 } from './DoubleCardsTypes';
+
+export const setGridSize = (input: GridSize): DoubleCardsTypes => ({
+  type: DOUBLE_CARDS_SET_GRID_SIZE,
+  payload: input
+});
 
 export const setCardsDeck = (input: CardsDeck): DoubleCardsTypes => ({
   type: DOUBLE_CARDS_SET_CARDS_DECK,

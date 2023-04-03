@@ -1,5 +1,8 @@
 import { RootStateT } from '../../store/rootReducer';
 import { CardsDeck, CardType } from '../Card/CardTypes';
+import { GridSize } from './DoubleCardsTypes';
+
+export const selectGridSize = (state: RootStateT): GridSize => state.doubleCards.gridSize;
 
 export const selectCardsDeck = (state: RootStateT): CardsDeck => state.doubleCards.cardsDeck;
 
