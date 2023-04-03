@@ -9,7 +9,7 @@
     z-index: 1;
     background: inherit;
     background-size: cover;
-    overflow: hidden;
+    overflow: initial;
     backdrop-filter: blur(0.5rem);
 
     &:before {
