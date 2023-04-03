@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { columnOnClick, columnOnMouseOver, tableOnMouseLeave } from './events';
 import { Dispatch, SetStateAction } from '../../../../../features/_common/types';
 
@@ -10,11 +10,17 @@ type Props = {
 const ResizeTable: React.FC<Props> = (props: Props) => {
   const { showResizeTable, setShowResizeTable } = props;
 
-  const rowAmount = Array.from({ length: 8 }, (_, i) => i + 1);
-  const columnAmount = Array.from({ length: 8 }, (_, i) => i + 1);
+  const rowAmount = Array.from({ length: 4 }, (_, i) => i + 1);
+  const columnAmount = Array.from({ length: 6 }, (_, i) => i + 1);
 
   const [selectedRow, setSelectedRow] = useState<number>(2);
   const [selectedColumn, setSelectedColumn] = useState<number>(2);
+  const [isEven, setIsEven] = useState(true);
+
+  useEffect(() => {
+    const isEven = (selectedRow * selectedColumn) % 2 === 0 ? true : false;
+    setIsEven(isEven);
+  }, [selectedRow, selectedColumn]);
 
   if (!showResizeTable) return null;
   return (
@@ -24,7 +30,8 @@ const ResizeTable: React.FC<Props> = (props: Props) => {
           {rowAmount.map((rowIndex) => (
             <tr key={rowIndex} data-id={rowIndex}>
               {columnAmount.map((columnIndex) => {
-                const isSelected = columnIndex <= selectedColumn && rowIndex <= selectedRow;
+                const lessThenFocused = columnIndex <= selectedColumn && rowIndex <= selectedRow;
+                const isSelected = lessThenFocused && isEven;
 
                 return (
                   <td
@@ -42,6 +49,9 @@ const ResizeTable: React.FC<Props> = (props: Props) => {
           ))}
         </tbody>
       </table>
+      <div className="grid-resize_table__footer">
+        {isEven ? <span>{(selectedRow * selectedColumn) / 2 + ' pairs'}</span> : null}
+      </div>
     </div>
   );
 };

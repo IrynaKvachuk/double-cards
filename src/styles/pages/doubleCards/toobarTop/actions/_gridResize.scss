@@ -11,21 +11,25 @@
     background-color: $color-background-white;
     z-index: 101;
 
-    &:hover {
-      & td {
-        &.selected {
-          filter: contrast(1.7);
-        }
-      }
-    }
-
     & tr {
       height: 2.5rem;
 
       & td {
         min-width: 2.5rem;
         background-color: $color-background-secondary;
+
+        &.selected {
+          filter: contrast(1.7);
+        }
       }
+    }
+
+    &__footer {
+      min-height: 1.7rem;
+      margin-right: 1rem;
+      display: flex;
+      flex-direction: row-reverse;
+      font-size: 1.5rem;
     }
   }
 }
