@@ -23,7 +23,22 @@
     display: grid;
     place-items: center;
     font-size: 2rem;
-    margin: 3rem 0;
+    margin: 3rem 0 0;
     color: $color-font-info;
+
+    &__best-result {
+      width: 100%;
+      display: grid;
+      place-items: center;
+      margin-top: 2rem;
+      padding-bottom: 2rem;
+      text-align: center;
+      background-color: $color-background-secondary;
+
+      & h2 {
+        margin: 1rem 0;
+        color: $color-font-white;
+      }
+    }
   }
 }

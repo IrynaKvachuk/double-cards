@@ -1,10 +1,11 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
+import { Timer } from '../features/_common/types';
 
 type Props = {
-  resetTime: boolean;
+  resetTime: number;
   runTimer: boolean;
-  saveTime?: (time: number) => void;
+  saveTime?: (time: Timer) => void;
 };
 
 const Stopwatch: React.FC<Props> = React.memo((props: Props) => {
@@ -25,12 +26,16 @@ const Stopwatch: React.FC<Props> = React.memo((props: Props) => {
 
   useEffect(() => {
     if (!resetTime) return;
+
     setTime(0);
+    setHours(0);
+    setMinutes(0);
+    setSeconds(0);
   }, [resetTime]);
 
   useEffect(() => {
     setIsRunning(runTimer);
-    if (!runTimer) saveTime(time);
+    if (!runTimer) saveTime({ hours, minutes, seconds });
   }, [runTimer]);
 
   useEffect(() => {

@@ -11,16 +11,18 @@ import {
   DOUBLE_CARDS_SET_GRID_SIZE,
   GridSize
 } from './DoubleCardsTypes';
+import { Timer } from '../_common/types';
+import { initTimerValues } from '../_common/initValues';
 
 export type DoubleCardsState = {
   gridSize: GridSize;
   cardsDeck: CardsDeck;
   firstCard: CardType | null;
   secondCard: CardType | null;
-  time: number;
+  time: Timer;
   turns: number;
   disableAll: boolean;
-  gameReloaded: boolean;
+  gameReloaded: number;
   gameFinished: boolean;
 };
 
@@ -29,10 +31,10 @@ const initialState: DoubleCardsState = {
   cardsDeck: [],
   firstCard: null,
   secondCard: null,
-  time: 0,
+  time: initTimerValues,
   turns: 0,
   disableAll: false,
-  gameReloaded: true,
+  gameReloaded: 0,
   gameFinished: false
 };
 
@@ -54,11 +56,13 @@ const doubleCardsReducer: Reducer<DoubleCardsState> = (state = initialState, act
     case DOUBLE_CARDS_SET_GRID_SIZE:
       return {
         ...state,
+        gameReloaded: state.gameReloaded + 1,
         gridSize: { columnAmount: action.payload.columnAmount, rowAmount: action.payload.rowAmount }
       };
     case DOUBLE_CARDS_SET_CARDS_DECK:
       return {
         ...initialState,
+        gameReloaded: state.gameReloaded + 1,
         gridSize: { ...state.gridSize },
         cardsDeck: action.payload.cardsDeck
       };
@@ -69,7 +73,6 @@ const doubleCardsReducer: Reducer<DoubleCardsState> = (state = initialState, act
       return {
         ...state,
         cardsDeck,
-        gameReloaded: false,
         gameFinished: !gameNotFinished
       };
     }

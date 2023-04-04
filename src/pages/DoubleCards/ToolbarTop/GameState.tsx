@@ -7,6 +7,7 @@ import {
   selectTurns
 } from '../../../features/DoubleCards/DoubleCardsSelects';
 import { setGameTime } from '../../../features/DoubleCards/DoubleCardsActions';
+import { Timer } from '../../../features/_common/types';
 
 const GameState: React.FC = () => {
   const dispatch = useDispatch();
@@ -15,7 +16,7 @@ const GameState: React.FC = () => {
   const gameFinished = useSelector(selectGameFinished);
   const doubleCardsTurns = useSelector(selectTurns);
 
-  const saveTimeToStore = (time: number) => {
+  const saveTimeToStore = (time: Timer) => {
     dispatch(setGameTime(time));
   };
 

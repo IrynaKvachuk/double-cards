@@ -1,4 +1,5 @@
 import { CardsDeck, CardType } from '../Card/CardTypes';
+import { Timer } from '../_common/types';
 import {
   DoubleCardsTypes,
   DOUBLE_CARDS_CLOSE_CARDS,
@@ -28,7 +29,7 @@ export const setCardData = (input: CardType): DoubleCardsTypes => ({
   payload: { card: input }
 });
 
-export const setGameTime = (input: number): DoubleCardsTypes => ({
+export const setGameTime = (input: Timer): DoubleCardsTypes => ({
   type: DOUBLE_CARDS_SET_TIME,
   payload: { time: input }
 });

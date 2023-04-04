@@ -1,12 +1,13 @@
 import { RootStateT } from '../../store/rootReducer';
 import { CardsDeck, CardType } from '../Card/CardTypes';
+import { Timer } from '../_common/types';
 import { GridSize } from './DoubleCardsTypes';
 
 export const selectGridSize = (state: RootStateT): GridSize => state.doubleCards.gridSize;
 
 export const selectCardsDeck = (state: RootStateT): CardsDeck => state.doubleCards.cardsDeck;
 
-export const selectGameTime = (state: RootStateT): number => state.doubleCards.time;
+export const selectGameTime = (state: RootStateT): Timer => state.doubleCards.time;
 
 export const selectTurns = (state: RootStateT): number => state.doubleCards.turns;
 
@@ -19,4 +20,4 @@ export const selectDisableAllCards = (state: RootStateT): boolean => state.doubl
 
 export const selectGameFinished = (state: RootStateT): boolean => state.doubleCards.gameFinished;
 
-export const selectGameReloaded = (state: RootStateT): boolean => state.doubleCards.gameReloaded;
+export const selectGameReloaded = (state: RootStateT): number => state.doubleCards.gameReloaded;

@@ -1,4 +1,5 @@
 import { CardsDeck, CardType } from '../Card/CardTypes';
+import { Timer } from '../_common/types';
 
 export const DOUBLE_CARDS_SET_GRID_SIZE = 'DOUBLE_CARDS/SET_GRID_SIZE';
 export const DOUBLE_CARDS_SET_CARDS_DECK = 'DOUBLE_CARDS/SET_CARDS_DECK';
@@ -32,7 +33,7 @@ interface SetCardData {
 
 interface SetGameTime {
   type: typeof DOUBLE_CARDS_SET_TIME;
-  payload: { time: number };
+  payload: { time: Timer };
 }
 
 interface ChooseFirstCard {
