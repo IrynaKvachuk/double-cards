@@ -75,7 +75,6 @@ export const shuffleCards = (): CardsDeck => {
   const cardAmount = (columnAmount * rowAmount) / 2;
   uniqueCards.splice(cardAmount);
 
-  console.log('gridSize', gridSize, 'cardAmount', cardAmount, 'uniqueCards', uniqueCards);
   const cardsDeck = [...uniqueCards, ...uniqueCards]
     .sort(() => Math.random() - 0.5)
     .map((card, index) => ({ ...card, id: card.src + index }));

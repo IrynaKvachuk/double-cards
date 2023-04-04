@@ -1,4 +1,5 @@
 import { GameResult } from '.';
+import { GridSize } from '../../../features/DoubleCards/DoubleCardsTypes';
 import { Dispatch, SetStateAction } from '../../../features/_common/types';
 import { stringifyDataToLocalStorage, tryParseDataFromLocalStorage } from '../../../utils';
 
@@ -16,21 +17,25 @@ export const onClose = (props: OnClose) => {
 
 type RefreshBestResult = {
   newResult: GameResult;
+  gridSize: GridSize;
   setGameResult: Dispatch<SetStateAction<GameResult>>;
 };
 
 export const refreshBestResult = (props: RefreshBestResult) => {
-  const { newResult, setGameResult } = props;
+  const { newResult, gridSize, setGameResult } = props;
+  const { columnAmount, rowAmount } = gridSize;
   const { time, turns } = newResult;
+  const sizeName = String(columnAmount + 'x' + rowAmount);
 
-  const prevResult: GameResult = tryParseDataFromLocalStorage().bestResult;
+  const prevResults = tryParseDataFromLocalStorage().bestResult;
+  const resultForCurrentSize: GameResult = prevResults?.[sizeName];
   const bestResult = {
-    time: time > prevResult?.time ? prevResult.time : time,
-    turns: turns > prevResult?.turns ? prevResult.turns : turns
+    time: time > resultForCurrentSize?.time ? resultForCurrentSize.time : time,
+    turns: turns > resultForCurrentSize?.turns ? resultForCurrentSize.turns : turns
   };
 
   stringifyDataToLocalStorage({
-    bestResult
+    bestResult: { ...prevResults, [sizeName]: bestResult }
   });
   setGameResult(bestResult);
 

@@ -1,23 +1,11 @@
 .double-cards {
-  &_table {
+  &_game-table {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-gap: 2rem;
   }
 
   @media screen and (min-width: $breakpoint-max-tablet) {
-    &_table {
-      grid-gap: 1rem;
-
-      & img {
-        width: 10rem;
-      }
-    }
   }
 
   @media screen and (max-width: $breakpoint-max-small-screen) {
-    &_table {
-      grid-gap: 0.5rem;
-    }
   }
 }

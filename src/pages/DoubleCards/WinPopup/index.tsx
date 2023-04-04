@@ -1,7 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import FireWorkCSS from '../../../components/FireworkCSS';
-import { selectGameTime, selectTurns } from '../../../features/DoubleCards/DoubleCardsSelects';
+import {
+  selectGameTime,
+  selectGridSize,
+  selectTurns
+} from '../../../features/DoubleCards/DoubleCardsSelects';
 import Modal from '../../../layout/Modal/Modal';
 import { onClose, refreshBestResult } from './utils';
 
@@ -14,11 +18,12 @@ const WinPopup = () => {
   const [isOpen, setIsOpen] = useState<boolean>(true);
   const [gameResult, setGameResult] = useState<GameResult>({ time: 0, turns: 0 });
 
+  const gridSize = useSelector(selectGridSize);
   const time = useSelector(selectGameTime);
   const turns = useSelector(selectTurns);
 
   useEffect(() => {
-    refreshBestResult({ newResult: { time, turns }, setGameResult });
+    refreshBestResult({ newResult: { time, turns }, gridSize, setGameResult });
   }, [time, turns]);
 
   return (
@@ -32,11 +37,11 @@ const WinPopup = () => {
       <div className="win-popup_info">
         <span>Time: {time}</span>
         <span>Turns: {turns}</span>
-        <div>
-          <h2>Best result</h2>
-          <span>Time: {gameResult.time}</span>
-          <span>Turns: {gameResult.turns}</span>
-        </div>
+        <h2>
+          Best result for {gridSize.columnAmount} x {gridSize.rowAmount}
+        </h2>
+        <span>Time: {gameResult.time}</span>
+        <span>Turns: {gameResult.turns}</span>
       </div>
       <FireWorkCSS />
     </Modal>

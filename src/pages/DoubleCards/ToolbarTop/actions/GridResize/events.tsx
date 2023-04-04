@@ -37,17 +37,20 @@ export const columnOnMouseOver = (props: ColumnOnMouseOver) => {
 
 type ColumnOnClick = {
   event: React.MouseEvent<HTMLTableCellElement>;
+  isAllowed: boolean;
   setShowResizeTable: Dispatch<SetStateAction<boolean>>;
 };
 
 export const changeGridSize = (props: GridSize) => {
   store.dispatch(setGridSize(props));
-  stringifyDataToLocalStorage({ gridSize: props, bestResult: {} });
+  stringifyDataToLocalStorage({ gridSize: props });
   reloadGame();
 };
 
 export const columnOnClick = (props: ColumnOnClick) => {
-  const { event, setShowResizeTable } = props;
+  const { event, isAllowed, setShowResizeTable } = props;
+  if (!isAllowed) return;
+
   const cell = event.target as HTMLTableCellElement;
   const columnId = cell.getAttribute('data-id');
   const rowId = cell.closest('tr')?.getAttribute('data-id');

@@ -15,11 +15,13 @@ const ResizeTable: React.FC<Props> = (props: Props) => {
 
   const [selectedRow, setSelectedRow] = useState<number>(2);
   const [selectedColumn, setSelectedColumn] = useState<number>(2);
-  const [isEven, setIsEven] = useState(true);
+  const [isAllowed, setIsAllowed] = useState(true);
 
   useEffect(() => {
-    const isEven = (selectedRow * selectedColumn) % 2 === 0 ? true : false;
-    setIsEven(isEven);
+    const cellsCount = selectedRow * selectedColumn;
+    const isEven = cellsCount % 2 === 0 ? true : false;
+    const isAllowed = isEven && cellsCount >= 4;
+    setIsAllowed(isAllowed);
   }, [selectedRow, selectedColumn]);
 
   if (!showResizeTable) return null;
@@ -31,7 +33,7 @@ const ResizeTable: React.FC<Props> = (props: Props) => {
             <tr key={rowIndex} data-id={rowIndex}>
               {columnAmount.map((columnIndex) => {
                 const lessThenFocused = columnIndex <= selectedColumn && rowIndex <= selectedRow;
-                const isSelected = lessThenFocused && isEven;
+                const isSelected = lessThenFocused && isAllowed;
 
                 return (
                   <td
@@ -41,7 +43,7 @@ const ResizeTable: React.FC<Props> = (props: Props) => {
                     onMouseOver={(event) =>
                       columnOnMouseOver({ event, setSelectedColumn, setSelectedRow })
                     }
-                    onClick={(event) => columnOnClick({ event, setShowResizeTable })}
+                    onClick={(event) => columnOnClick({ event, isAllowed, setShowResizeTable })}
                   ></td>
                 );
               })}
@@ -50,7 +52,7 @@ const ResizeTable: React.FC<Props> = (props: Props) => {
         </tbody>
       </table>
       <div className="grid-resize_table__footer">
-        {isEven ? <span>{(selectedRow * selectedColumn) / 2 + ' pairs'}</span> : null}
+        {isAllowed ? <span>{(selectedRow * selectedColumn) / 2 + ' pairs'}</span> : null}
       </div>
     </div>
   );
