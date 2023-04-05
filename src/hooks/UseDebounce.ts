@@ -3,14 +3,16 @@ import { useTimeoutFn } from './UseTimeoutFn';
 
 export type UseDebounceReturn = [() => boolean | null, () => void];
 
-export default function useDebounce(
+export const UseDebounce = (
   fn: Function,
   ms: number = 0,
   deps: DependencyList = []
-): UseDebounceReturn {
+): UseDebounceReturn => {
   const [isReady, cancel, reset] = useTimeoutFn(fn, ms);
 
   useEffect(reset, deps);
 
   return [isReady, cancel];
-}
+};
+
+export default UseDebounce;
