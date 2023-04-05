@@ -2,6 +2,7 @@ import { GameResult } from '.';
 import { GridSize } from '../../../features/DoubleCards/DoubleCardsTypes';
 import { Dispatch, SetStateAction } from '../../../features/_common/types';
 import { stringifyDataToLocalStorage, tryParseDataFromLocalStorage } from '../../../utils';
+import { reloadGame } from '../utils';
 
 type OnClose = {
   setIsOpen: Dispatch<SetStateAction<boolean>>;
@@ -10,6 +11,7 @@ type OnClose = {
 export const onClose = (props: OnClose) => {
   const { setIsOpen } = props;
 
+  reloadGame();
   setIsOpen(false);
 
   return;
