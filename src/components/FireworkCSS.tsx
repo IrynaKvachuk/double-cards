@@ -1,8 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useEffectOnce } from '../hooks';
 
 const FireworkCSS: React.FC = React.memo(() => {
-  const fireworkAmount = [...Array(5).keys()];
-  const explosionAmount = [...Array(12).keys()];
+  const [fireworkAmount, setFireworkAmount] = useState<Array<number>>([]);
+  const [explosionAmount, setExplosionAmount] = useState<Array<number>>([]);
+
+  useEffectOnce(() => {
+    setFireworkAmount([...Array(5).keys()]);
+    setExplosionAmount([...Array(12).keys()]);
+  });
 
   return (
     <div className="fireworks-container">
