@@ -42,7 +42,6 @@ const WinPopup = () => {
       <div className="win-popup_info">
         <span>
           Time:
-          {time.hours ? <span>{time.hours}h</span> : null}
           <span> {time.minutes}m</span>
           <span>{time.seconds}s</span>
         </span>
@@ -53,7 +52,6 @@ const WinPopup = () => {
           </h2>
           <span>
             Time:
-            {gameResult.time.hours ? <span>{gameResult.time.hours}h</span> : null}
             <span> {gameResult.time.minutes}m</span>
             <span>{gameResult.time.seconds}s</span>
           </span>
