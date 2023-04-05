@@ -1,3 +1,4 @@
+import React from 'react';
 import { useEffect, useState } from 'react';
 import { columnOnClick, columnOnMouseOver, tableOnMouseLeave } from './events';
 import { Dispatch, SetStateAction } from '../../../../../features/_common/types';
@@ -7,7 +8,7 @@ type Props = {
   setShowResizeTable: Dispatch<SetStateAction<boolean>>;
 };
 
-const ResizeTable: React.FC<Props> = (props: Props) => {
+const ResizeTable: React.FC<Props> = React.memo((props: Props) => {
   const { showResizeTable, setShowResizeTable } = props;
 
   const rowAmount = Array.from({ length: 4 }, (_, i) => i + 1);
@@ -56,6 +57,8 @@ const ResizeTable: React.FC<Props> = (props: Props) => {
       </div>
     </div>
   );
-};
+});
+
+ResizeTable.displayName = 'ResizeTable';
 
 export default ResizeTable;

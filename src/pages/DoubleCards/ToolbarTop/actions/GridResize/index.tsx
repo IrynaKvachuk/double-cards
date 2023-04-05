@@ -1,8 +1,9 @@
+import React from 'react';
 import { useState } from 'react';
 import ResizeTable from './ResizeTable';
 import { onResizeBtnClick } from './utils';
 
-const GridResize = () => {
+const GridResize: React.FC = React.memo(() => {
   const [showResizeTable, setShowResizeTable] = useState(false);
 
   return (
@@ -17,6 +18,8 @@ const GridResize = () => {
       <ResizeTable showResizeTable={showResizeTable} setShowResizeTable={setShowResizeTable} />
     </div>
   );
-};
+});
+
+GridResize.displayName = 'GridResize';
 
 export default GridResize;

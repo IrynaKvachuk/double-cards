@@ -1,3 +1,4 @@
+import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import Stopwatch from '../../../components/StopWatch';
@@ -9,7 +10,7 @@ import {
 import { setGameTime } from '../../../features/DoubleCards/DoubleCardsActions';
 import { Timer } from '../../../features/_common/types';
 
-const GameState: React.FC = () => {
+const GameState: React.FC = React.memo(() => {
   const dispatch = useDispatch();
 
   const gameReloaded = useSelector(selectGameReloaded);
@@ -28,6 +29,8 @@ const GameState: React.FC = () => {
       </span>
     </div>
   );
-};
+});
+
+GameState.displayName = 'GameState';
 
 export default GameState;
