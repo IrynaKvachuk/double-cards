@@ -21,3 +21,5 @@ export const selectDisableAllCards = (state: RootStateT): boolean => state.doubl
 export const selectGameFinished = (state: RootStateT): boolean => state.doubleCards.gameFinished;
 
 export const selectGameReloaded = (state: RootStateT): number => state.doubleCards.gameReloaded;
+
+export const selectShowAll = (state: RootStateT): number => state.doubleCards.boosters.showAll;

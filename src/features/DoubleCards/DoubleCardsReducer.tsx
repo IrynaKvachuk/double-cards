@@ -1,5 +1,5 @@
 import { Reducer } from 'redux';
-import { CardsDeck, CardType } from '../Card/CardTypes';
+import { CardsDeck, CardSide, CardType } from '../Card/CardTypes';
 import {
   DOUBLE_CARDS_SET_TIME,
   DOUBLE_CARDS_CHOOSE_FIRST_CARD,
@@ -9,7 +9,9 @@ import {
   DOUBLE_CARDS_SET_CARDS_DECK,
   DOUBLE_CARDS_SET_CARD_DATA,
   DOUBLE_CARDS_SET_GRID_SIZE,
-  GridSize
+  DOUBLE_CARDS_SHOW_ALL_CARDS,
+  GridSize,
+  Boosters
 } from './DoubleCardsTypes';
 import { Timer } from '../_common/types';
 import { initTimerValues } from '../_common/initValues';
@@ -24,6 +26,7 @@ export type DoubleCardsState = {
   disableAll: boolean;
   gameReloaded: number;
   gameFinished: boolean;
+  boosters: Boosters;
 };
 
 const initialState: DoubleCardsState = {
@@ -35,7 +38,10 @@ const initialState: DoubleCardsState = {
   turns: 0,
   disableAll: false,
   gameReloaded: 0,
-  gameFinished: false
+  gameFinished: false,
+  boosters: {
+    showAll: 3
+  }
 };
 
 type SetDeckCard = {
@@ -92,6 +98,21 @@ const doubleCardsReducer: Reducer<DoubleCardsState> = (state = initialState, act
       };
     case DOUBLE_CARDS_DISABLE_ALL_CARDS:
       return { ...state, disableAll: action.payload.disableAll };
+    case DOUBLE_CARDS_SHOW_ALL_CARDS: {
+      const showAll = action.payload.showAll;
+      const prevCount = state.boosters.showAll;
+      const cardsDeck = state.cardsDeck.map((card) => {
+        const side: CardSide = showAll ? 'front' : card.matched ? 'front' : 'back';
+
+        return { ...card, side };
+      });
+
+      return {
+        ...state,
+        cardsDeck,
+        boosters: { ...state.boosters, showAll: showAll ? prevCount - 1 : prevCount }
+      };
+    }
     default:
       return state;
   }

@@ -11,6 +11,7 @@ import {
   DOUBLE_CARDS_CHOOSE_SECOND_CARD,
   DOUBLE_CARDS_DISABLE_ALL_CARDS,
   DOUBLE_CARDS_SET_GRID_SIZE,
+  DOUBLE_CARDS_SHOW_ALL_CARDS,
   GridSize
 } from './DoubleCardsTypes';
 
@@ -53,7 +54,12 @@ export const matchCards = (input: CardType): DoubleCardsTypes => ({
   payload: { cardToMatch: input }
 });
 
-export const disableAll = (input: boolean): DoubleCardsTypes => ({
+export const disableAllCards = (input: boolean): DoubleCardsTypes => ({
   type: DOUBLE_CARDS_DISABLE_ALL_CARDS,
   payload: { disableAll: input }
+});
+
+export const showAllCards = (input: boolean): DoubleCardsTypes => ({
+  type: DOUBLE_CARDS_SHOW_ALL_CARDS,
+  payload: { showAll: input }
 });

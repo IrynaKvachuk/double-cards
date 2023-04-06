@@ -10,6 +10,12 @@ export const DOUBLE_CARDS_CHOOSE_SECOND_CARD = 'DOUBLE_CARDS/CHOOSE_SECOND_CARD'
 export const DOUBLE_CARDS_CLOSE_CARDS = 'DOUBLE_CARDS/CLEAR_CARD';
 export const DOUBLE_CARDS_MATCH_CARDS = 'DOUBLE_CARDS/MATCH_CARDS';
 export const DOUBLE_CARDS_DISABLE_ALL_CARDS = 'DOUBLE_CARDS/DISABLE_ALL_CARDS';
+export const DOUBLE_CARDS_SHOW_ALL_CARDS = 'DOUBLE_CARDS/SHOW_ALL_CARDS';
+
+export type BoosterTypes = 'showAll';
+export type Boosters = {
+  showAll: number;
+};
 
 export type GridSize = {
   columnAmount: number;
@@ -55,9 +61,14 @@ interface MatchCards {
   payload: { cardToMatch: CardType };
 }
 
-interface DisableAll {
+interface DisableAllCards {
   type: typeof DOUBLE_CARDS_DISABLE_ALL_CARDS;
   payload: { disableAll: boolean };
+}
+
+interface ShowAllCards {
+  type: typeof DOUBLE_CARDS_SHOW_ALL_CARDS;
+  payload: { showAll: boolean };
 }
 
 export type DoubleCardsTypes =
@@ -69,4 +80,5 @@ export type DoubleCardsTypes =
   | ChooseSecondCard
   | CloseCards
   | MatchCards
-  | DisableAll;
+  | DisableAllCards
+  | ShowAllCards;

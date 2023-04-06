@@ -1,0 +1,31 @@
+.toolbar-right {
+  & .show-all {
+    position: relative;
+
+    &.selected {
+      & .show-all_btn {
+        background-color: $color-background-dark;
+        color: $color-font-white;
+      }
+      & .show-all_count {
+        color: $color-font-white;
+      }
+    }
+
+    &_btn {
+      background-color: $color-btn-secondary;
+      -webkit-animation: bubble-anim 6s ease-out infinite;
+      animation: bubble-anim 6s ease-out infinite;
+    }
+
+    &_count {
+      position: absolute;
+      bottom: 0.5rem;
+      right: 0.5rem;
+      font-size: 1.2rem;
+      font-weight: $font-weight-bold;
+      color: $color-font-dark-gray;
+    }
+  }
+}
+
