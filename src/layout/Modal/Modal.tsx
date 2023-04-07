@@ -41,7 +41,11 @@ const Modal: React.FC<Props> = (props) => {
         >
           <div className="modal__content">
             {children}
-            <button data-testid="button-close" className="modal__button-close" onClick={onClose}>
+            <button
+              data-testid="button-close"
+              className="modal__button-close game-app_btn double-cards_btn"
+              onClick={onClose}
+            >
               &#9587;
             </button>
           </div>

@@ -7,6 +7,7 @@
     min-width: 35rem;
     min-height: 20rem;
     box-shadow: 0 0 10rem 1rem $color-font-light-gray;
+    color: $color-font-light-gray;
   }
 
   &_title {
@@ -14,17 +15,29 @@
     padding: 1rem 0 1.4rem;
     border-bottom: 0.2rem solid;
     font-size: 2.6rem;
-    text-transform: uppercase;
     text-align: center;
     color: $color-font-win;
+    text-transform: uppercase;
+    opacity: 70%;
   }
 
   &_info {
-    display: grid;
-    place-items: center;
-    font-size: 2rem;
-    margin: 3rem 0 0;
-    color: $color-font-info;
+    &__current-result,
+    &__best-result {
+      display: grid;
+      place-items: center;
+      font-size: 2rem;
+      margin: 3rem 0 0;
+      color: $color-font-info;
+      // background-color: rgba($color: #2c69dc, $alpha: 0.4);
+    }
+
+    &__current-result {
+      margin: 3rem 2rem 0;
+      padding: 2rem;
+      border: 0.1rem solid $color-font-win;
+      box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+    }
 
     &__best-result {
       width: 100%;
@@ -32,12 +45,15 @@
       place-items: center;
       margin-top: 2rem;
       padding-bottom: 2rem;
+      border-radius: 0 0 1rem 1rem;
       text-align: center;
-      background-color: $color-background-secondary;
+      font-size: 1.5rem;
+      // background-color: $color-background-secondary;
 
       & h2 {
         margin: 1rem 0;
-        color: $color-font-white;
+        font-size: 1.7rem;
+        opacity: 40%;
       }
     }
   }

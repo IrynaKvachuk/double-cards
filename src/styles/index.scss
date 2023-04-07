@@ -17,10 +17,13 @@
 @import './layout/modal';
 
 // PAGES
+@import './pages/doubleCards/doubleCards';
 @import './pages/doubleCards/gameTable';
 @import './pages/doubleCards/toobarTop/toolbarTop';
 @import './pages/doubleCards/toobarTop/actions/gridResize';
 @import './pages/doubleCards/winPopup';
+@import './pages/doubleCards/toolbarRight/toolbarRight';
+@import './pages/doubleCards/toolbarRight/showAll';
 
 // COMPONENTS
 @import './components/card';

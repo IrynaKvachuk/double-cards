@@ -40,12 +40,14 @@ const WinPopup = () => {
     >
       <h1 className="win-popup_title">Win!</h1>
       <div className="win-popup_info">
-        <span>
-          Time:
-          <span> {time.minutes}m</span>
-          <span>{time.seconds}s</span>
-        </span>
-        <span>Turns: {turns}</span>
+        <div className="win-popup_info__current-result">
+          <span>
+            Time:
+            <span> {time.minutes}m</span>
+            <span>{time.seconds}s</span>
+          </span>
+          <span>Turns: {turns}</span>
+        </div>
         <div className="win-popup_info__best-result">
           <h2>
             Best result for {gridSize.columnAmount}x{gridSize.rowAmount}
