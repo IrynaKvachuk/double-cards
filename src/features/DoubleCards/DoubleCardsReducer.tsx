@@ -1,18 +1,6 @@
 import { Reducer } from 'redux';
 import { CardsDeck, CardSide, CardType } from '../Card/CardTypes';
-import {
-  DOUBLE_CARDS_SET_TIME,
-  DOUBLE_CARDS_CHOOSE_FIRST_CARD,
-  DOUBLE_CARDS_CHOOSE_SECOND_CARD,
-  DOUBLE_CARDS_CLOSE_CARDS,
-  DOUBLE_CARDS_DISABLE_ALL_CARDS,
-  DOUBLE_CARDS_SET_CARDS_DECK,
-  DOUBLE_CARDS_SET_CARD_DATA,
-  DOUBLE_CARDS_SET_GRID_SIZE,
-  DOUBLE_CARDS_SHOW_ALL_CARDS,
-  GridSize,
-  Boosters
-} from './DoubleCardsTypes';
+import { DOUBLE_CARDS, GridSize, Boosters, BoosterTypes } from './DoubleCardsTypes';
 import { Timer } from '../_common/types';
 import { initTimerValues } from '../_common/initValues';
 
@@ -40,7 +28,8 @@ const initialState: DoubleCardsState = {
   gameReloaded: 0,
   gameFinished: false,
   boosters: {
-    showAll: 3
+    showAll: { type: 'showAll', value: 3, date: new Date() },
+    showRaw: { type: 'showRaw', value: 5, date: new Date() }
   }
 };
 
@@ -59,20 +48,20 @@ const setDeckCard = (props: SetDeckCard) => {
 
 const doubleCardsReducer: Reducer<DoubleCardsState> = (state = initialState, action) => {
   switch (action.type) {
-    case DOUBLE_CARDS_SET_GRID_SIZE:
+    case DOUBLE_CARDS.SET_GRID_SIZE:
       return {
         ...state,
         gameReloaded: state.gameReloaded + 1,
         gridSize: { columnAmount: action.payload.columnAmount, rowAmount: action.payload.rowAmount }
       };
-    case DOUBLE_CARDS_SET_CARDS_DECK:
+    case DOUBLE_CARDS.SET_CARDS_DECK:
       return {
         ...initialState,
         gameReloaded: state.gameReloaded + 1,
         gridSize: { ...state.gridSize },
         cardsDeck: action.payload.cardsDeck
       };
-    case DOUBLE_CARDS_SET_CARD_DATA: {
+    case DOUBLE_CARDS.SET_CARD_DATA: {
       const cardsDeck = setDeckCard({ cardsDeck: state.cardsDeck, card: action.payload.card });
       const gameNotFinished = cardsDeck.some((card) => !card.matched);
 
@@ -82,13 +71,13 @@ const doubleCardsReducer: Reducer<DoubleCardsState> = (state = initialState, act
         gameFinished: !gameNotFinished
       };
     }
-    case DOUBLE_CARDS_SET_TIME:
+    case DOUBLE_CARDS.SET_TIME:
       return { ...state, time: action.payload.time };
-    case DOUBLE_CARDS_CHOOSE_FIRST_CARD:
+    case DOUBLE_CARDS.CHOOSE_FIRST_CARD:
       return { ...state, firstCard: action.payload.firstCard };
-    case DOUBLE_CARDS_CHOOSE_SECOND_CARD:
+    case DOUBLE_CARDS.CHOOSE_SECOND_CARD:
       return { ...state, secondCard: action.payload.secondCard, disableAll: true };
-    case DOUBLE_CARDS_CLOSE_CARDS:
+    case DOUBLE_CARDS.CLOSE_CARDS:
       return {
         ...state,
         firstCard: null,
@@ -96,21 +85,38 @@ const doubleCardsReducer: Reducer<DoubleCardsState> = (state = initialState, act
         turns: state.turns + 1,
         disableAll: false
       };
-    case DOUBLE_CARDS_DISABLE_ALL_CARDS:
+    case DOUBLE_CARDS.DISABLE_ALL_CARDS:
       return { ...state, disableAll: action.payload.disableAll };
-    case DOUBLE_CARDS_SHOW_ALL_CARDS: {
-      const showAll = action.payload.showAll;
-      const prevCount = state.boosters.showAll;
+    case DOUBLE_CARDS.SET_BOOSTER: {
+      const boosterType: BoosterTypes = action.payload.booster.type;
+      return {
+        ...state,
+        boosters: {
+          ...state.boosters,
+          [boosterType]: {
+            ...state.boosters[boosterType],
+            ...action.payload.booster
+          }
+        }
+      };
+    }
+    case DOUBLE_CARDS.SHOW_ALL_CARDS: {
+      const showAllCards = action.payload.showAll;
+      const prevValue = state.boosters.showAll.value;
       const cardsDeck = state.cardsDeck.map((card) => {
-        const side: CardSide = showAll ? 'front' : card.matched ? 'front' : 'back';
+        const side: CardSide = showAllCards ? 'front' : card.matched ? 'front' : 'back';
 
         return { ...card, side };
       });
+      const showAll = {
+        ...state.boosters.showAll,
+        value: showAllCards ? prevValue - 1 : prevValue
+      };
 
       return {
         ...state,
         cardsDeck,
-        boosters: { ...state.boosters, showAll: showAll ? prevCount - 1 : prevCount }
+        boosters: { ...state.boosters, showAll }
       };
     }
     default:
