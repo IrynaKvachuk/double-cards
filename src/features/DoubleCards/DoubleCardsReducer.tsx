@@ -3,6 +3,7 @@ import { CardsDeck, CardSide, CardType } from '../Card/CardTypes';
 import { DOUBLE_CARDS, GridSize, Boosters, BoosterTypes } from './DoubleCardsTypes';
 import { Timer } from '../_common/types';
 import { initTimerValues } from '../_common/initValues';
+import { stringifyDataToLocalStorage } from '../../utils';
 
 export type DoubleCardsState = {
   gridSize: GridSize;
@@ -59,6 +60,7 @@ const doubleCardsReducer: Reducer<DoubleCardsState> = (state = initialState, act
         ...initialState,
         gameReloaded: state.gameReloaded + 1,
         gridSize: { ...state.gridSize },
+        boosters: state.boosters,
         cardsDeck: action.payload.cardsDeck
       };
     case DOUBLE_CARDS.SET_CARD_DATA: {
@@ -101,10 +103,12 @@ const doubleCardsReducer: Reducer<DoubleCardsState> = (state = initialState, act
       };
     }
     case DOUBLE_CARDS.SHOW_ALL_CARDS: {
+      const hasBooster = state.boosters.showAll.value;
       const showAllCards = action.payload.showAll;
       const prevValue = state.boosters.showAll.value;
       const cardsDeck = state.cardsDeck.map((card) => {
-        const side: CardSide = showAllCards ? 'front' : card.matched ? 'front' : 'back';
+        const side: CardSide =
+          showAllCards && hasBooster ? 'front' : card.matched ? 'front' : 'back';
 
         return { ...card, side };
       });
@@ -112,6 +116,7 @@ const doubleCardsReducer: Reducer<DoubleCardsState> = (state = initialState, act
         ...state.boosters.showAll,
         value: showAllCards ? prevValue - 1 : prevValue
       };
+      stringifyDataToLocalStorage({ boosters: { ...state.boosters, showAll } });
 
       return {
         ...state,
