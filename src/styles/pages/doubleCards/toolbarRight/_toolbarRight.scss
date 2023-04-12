@@ -11,78 +11,70 @@
   align-items: center;
   justify-content: center;
 
-  &.game-app_container:before {
-    width: auto;
+  &.game-app_container {
+    border-radius: 2rem;
+    box-shadow: 0 0 2rem 0 rgba(0, 0, 0, 0.1);
+
+    &:before {
+      margin: 0 auto;
+      width: 6rem;
+      border-radius: 2rem;
+      background: linear-gradient(
+        0deg,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0) 25%,
+        rgba(255, 255, 255, 1) 50%,
+        rgba(255, 255, 255, 0) 75%,
+        rgba(255, 255, 255, 0) 100%
+      );
+      filter: none;
+      box-shadow: inset 0 0 200px rgba(255, 255, 255, 0.2);
+    }
   }
 
   & .double-cards_btn {
     padding: 1rem;
+    border: 0.3rem solid $color-font-white;
     border-radius: 50%;
   }
-}
 
-@-webkit-keyframes bubble-anim {
-  0% {
-    -webkit-transform: scale(1);
-    transform: scale(1);
-  }
+  & .booster {
+    position: relative;
 
-  90% {
-    -webkit-transform: scaleY(0.95) scaleX(1.05);
-    transform: scaleY(0.95) scaleX(1.05);
-  }
-
-  94% {
-    -webkit-transform: scaleY(1.1) scaleX(0.9);
-    transform: scaleY(1.1) scaleX(0.9);
-  }
-
-  96% {
-    -webkit-transform: scaleY(0.98) scaleX(1.02);
-    transform: scaleY(0.98) scaleX(1.02);
-  }
-
-  98% {
-    -webkit-transform: scaleY(1.02) scaleX(0.98);
-    transform: scaleY(1.02) scaleX(0.98);
-  }
-
-  99%,
-  100% {
-    -webkit-transform: scale(1);
-    transform: scale(1);
+    &_count {
+      position: absolute;
+      bottom: 0.5rem;
+      right: 0.5rem;
+      font-size: 1.2rem;
+      font-weight: $font-weight-bold;
+      color: $color-font-dark-gray;
+    }
   }
 }
 
-@keyframes bubble-anim {
-  0% {
-    -webkit-transform: scale(1);
-    transform: scale(1);
-  }
+@media screen and (max-width: $breakpoint-max-small-screen) {
+  .toolbar-right {
+    width: auto;
+    height: 6rem;
+    top: auto;
+    left: 0;
+    right: 0;
+    bottom: -7rem;
+    margin: 0;
+    flex-direction: row;
 
-  90% {
-    -webkit-transform: scaleY(0.95) scaleX(1.05);
-    transform: scaleY(0.95) scaleX(1.05);
-  }
-
-  94% {
-    -webkit-transform: scaleY(1.1) scaleX(0.9);
-    transform: scaleY(1.1) scaleX(0.9);
-  }
-
-  96% {
-    -webkit-transform: scaleY(0.98) scaleX(1.02);
-    transform: scaleY(0.98) scaleX(1.02);
-  }
-
-  98% {
-    -webkit-transform: scaleY(1.02) scaleX(0.98);
-    transform: scaleY(1.02) scaleX(0.98);
-  }
-
-  99%,
-  100% {
-    -webkit-transform: scale(1);
-    transform: scale(1);
+    &.game-app_container {
+      &:before {
+        width: auto;
+        background: linear-gradient(
+          90deg,
+          rgba(255, 255, 255, 0) 0%,
+          rgba(255, 255, 255, 0) 25%,
+          rgba(255, 255, 255, 1) 50%,
+          rgba(255, 255, 255, 0) 75%,
+          rgba(255, 255, 255, 0) 100%
+        );
+      }
+    }
   }
 }

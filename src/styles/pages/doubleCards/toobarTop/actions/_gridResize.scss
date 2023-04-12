@@ -19,17 +19,31 @@
         background-color: $color-background-secondary;
 
         &.selected {
-          filter: contrast(1.7);
+          filter: contrast(2);
         }
       }
     }
 
-    &__footer {
+    & .footer {
       min-height: 1.7rem;
       margin-right: 1rem;
       display: flex;
       flex-direction: row-reverse;
       font-size: 1.5rem;
+
+      &_error {
+        font-size: 1rem;
+        color: $color-font-error;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: $breakpoint-max-small-screen) {
+  .grid-resize {
+    &_table {
+      top: 3rem;
+      left: -15rem;
     }
   }
 }

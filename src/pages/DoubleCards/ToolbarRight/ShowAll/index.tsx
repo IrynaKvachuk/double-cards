@@ -9,7 +9,7 @@ const ShowAll: React.FC = () => {
   const showAllCount = useSelector(selectShowAll);
 
   return (
-    <div className={`show-all ${selected ? 'selected' : ''}`}>
+    <div className={`booster show-all ${selected ? 'selected' : ''}`}>
       <button
         className="game-app_btn double-cards_btn show-all_btn"
         title="New Game"
@@ -17,7 +17,7 @@ const ShowAll: React.FC = () => {
       >
         &#9903;
       </button>
-      <span className="show-all_count">{showAllCount}</span>
+      <span className="booster_count">{showAllCount}</span>
     </div>
   );
 };
