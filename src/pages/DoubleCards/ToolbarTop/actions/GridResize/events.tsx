@@ -4,6 +4,7 @@ import { Dispatch, SetStateAction } from '../../../../../features/_common/types'
 import store from '../../../../../store';
 import { stringifyDataToLocalStorage } from '../../../../../utils';
 import { reloadGame } from '../../../utils';
+import { getSelectedCellIds, isAllowedMount } from './utils';
 
 type TableOnMouseLeave = {
   setShowResizeTable: Dispatch<SetStateAction<boolean>>;
@@ -26,11 +27,10 @@ type ColumnOnMouseOver = {
 export const columnOnMouseOver = (props: ColumnOnMouseOver) => {
   const { event, setSelectedColumn, setSelectedRow } = props;
   const cell = event.target as HTMLTableCellElement;
-  const columnId = cell.getAttribute('data-id');
-  const rowId = cell.closest('tr')?.getAttribute('data-id');
+  const { rowId, columnId } = getSelectedCellIds({ cell });
 
-  setSelectedColumn(Number(columnId));
-  setSelectedRow(Number(rowId));
+  setSelectedColumn(columnId);
+  setSelectedRow(rowId);
 
   return;
 };
@@ -39,6 +39,7 @@ type ColumnOnClick = {
   event: React.MouseEvent<HTMLTableCellElement>;
   isAllowed: boolean;
   setShowResizeTable: Dispatch<SetStateAction<boolean>>;
+  setIsAllowed: Dispatch<SetStateAction<boolean>>;
 };
 
 export const changeGridSize = (props: GridSize) => {
@@ -48,10 +49,20 @@ export const changeGridSize = (props: GridSize) => {
 };
 
 export const columnOnClick = (props: ColumnOnClick) => {
-  const { event, isAllowed, setShowResizeTable } = props;
-  if (!isAllowed) return;
-
+  const { event, isAllowed, setShowResizeTable, setIsAllowed } = props;
   const cell = event.target as HTMLTableCellElement;
+  const isMobile = 'ontouchstart' in document.documentElement;
+  let isAllowedInMobile = false;
+
+  if (isMobile) {
+    const { rowId, columnId } = getSelectedCellIds({ cell });
+
+    isAllowedInMobile = isAllowedMount({ selectedRow: rowId, selectedColumn: columnId });
+    setIsAllowed(false);
+    if (!isAllowedInMobile) return;
+  }
+  if (!isMobile && !isAllowed) return;
+
   const columnId = cell.getAttribute('data-id');
   const rowId = cell.closest('tr')?.getAttribute('data-id');
 

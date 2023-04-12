@@ -2,6 +2,7 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 import { columnOnClick, columnOnMouseOver, tableOnMouseLeave } from './events';
 import { Dispatch, SetStateAction } from '../../../../../features/_common/types';
+import { isAllowedMount } from './utils';
 
 type Props = {
   showResizeTable: boolean;
@@ -19,10 +20,7 @@ const ResizeTable: React.FC<Props> = React.memo((props: Props) => {
   const [isAllowed, setIsAllowed] = useState(true);
 
   useEffect(() => {
-    const cellsCount = selectedRow * selectedColumn;
-    const isEven = cellsCount % 2 === 0 ? true : false;
-    const isAllowed = isEven && cellsCount >= 4;
-    setIsAllowed(isAllowed);
+    setIsAllowed(isAllowedMount({ selectedRow, selectedColumn }));
   }, [selectedRow, selectedColumn]);
 
   if (!showResizeTable) return null;
@@ -44,7 +42,14 @@ const ResizeTable: React.FC<Props> = React.memo((props: Props) => {
                     onMouseOver={(event) =>
                       columnOnMouseOver({ event, setSelectedColumn, setSelectedRow })
                     }
-                    onClick={(event) => columnOnClick({ event, isAllowed, setShowResizeTable })}
+                    onClick={(event) =>
+                      columnOnClick({
+                        event,
+                        isAllowed,
+                        setShowResizeTable,
+                        setIsAllowed
+                      })
+                    }
                   ></td>
                 );
               })}
@@ -52,8 +57,9 @@ const ResizeTable: React.FC<Props> = React.memo((props: Props) => {
           ))}
         </tbody>
       </table>
-      <div className="grid-resize_table__footer">
+      <div className="footer">
         {isAllowed ? <span>{(selectedRow * selectedColumn) / 2 + ' pairs'}</span> : null}
+        {!isAllowed ? <span className="footer_error">Please, choose even value</span> : null}
       </div>
     </div>
   );

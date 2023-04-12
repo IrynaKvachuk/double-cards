@@ -11,7 +11,7 @@ import { shuffleCards } from './GameTable/utils';
 
 export const getPrevSettings = () => {
   const localStorageData = tryParseDataFromLocalStorage();
-  const { gridSize, boosters } = localStorageData;
+  const { gridSize = {}, boosters } = localStorageData;
 
   if (Object.keys(gridSize).length) store.dispatch(setGridSize(gridSize));
   if (boosters) {
