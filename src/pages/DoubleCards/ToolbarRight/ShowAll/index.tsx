@@ -13,7 +13,7 @@ const ShowAll: React.FC = () => {
   const showAllData = useSelector(selectShowAll);
 
   useEffect(() => {
-    if (!showAllData?.date) return;
+    if (!showAllData) return;
     const today = new Date();
     if (today === showAllData.date) return;
 
