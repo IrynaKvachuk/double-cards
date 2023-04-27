@@ -1,9 +1,6 @@
-import {
-  setBooster,
-  setCardsDeck,
-  setGridSize
-} from '../../features/DoubleCards/DoubleCardsActions';
-import { Booster } from '../../features/DoubleCards/DoubleCardsTypes';
+import { Booster } from '../../features/Boosters/BoosterTypes';
+import { setBooster } from '../../features/Boosters/BoostersActions';
+import { setCardsDeck, setGridSize } from '../../features/DoubleCards/DoubleCardsActions';
 import { openModal } from '../../features/Modal/ModalActions';
 import store from '../../store';
 import { tryParseDataFromLocalStorage } from '../../utils';

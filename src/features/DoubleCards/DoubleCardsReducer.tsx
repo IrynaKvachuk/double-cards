@@ -1,9 +1,8 @@
 import { Reducer } from 'redux';
 import { CardsDeck, CardSide, CardType } from '../Card/CardTypes';
-import { DOUBLE_CARDS, GridSize, Boosters, BoosterTypes } from './DoubleCardsTypes';
+import { DOUBLE_CARDS, GridSize } from './DoubleCardsTypes';
 import { Timer } from '../_common/types';
 import { initTimerValues } from '../_common/initValues';
-import { stringifyDataToLocalStorage } from '../../utils';
 
 export type DoubleCardsState = {
   gridSize: GridSize;
@@ -15,7 +14,6 @@ export type DoubleCardsState = {
   disableAll: boolean;
   gameReloaded: number;
   gameFinished: boolean;
-  boosters: Boosters;
 };
 
 const initialState: DoubleCardsState = {
@@ -27,11 +25,7 @@ const initialState: DoubleCardsState = {
   turns: 0,
   disableAll: false,
   gameReloaded: 0,
-  gameFinished: false,
-  boosters: {
-    showAll: { type: 'showAll', value: 3, date: new Date() },
-    showRaw: { type: 'showRaw', value: 5, date: new Date() }
-  }
+  gameFinished: false
 };
 
 const doubleCardsReducer: Reducer<DoubleCardsState> = (state = initialState, action) => {
@@ -47,7 +41,6 @@ const doubleCardsReducer: Reducer<DoubleCardsState> = (state = initialState, act
         ...initialState,
         gameReloaded: state.gameReloaded + 1,
         gridSize: { ...state.gridSize },
-        boosters: state.boosters,
         cardsDeck: action.payload.cardsDeck
       };
     case DOUBLE_CARDS.SET_CARD_DATA: {
@@ -80,39 +73,17 @@ const doubleCardsReducer: Reducer<DoubleCardsState> = (state = initialState, act
       };
     case DOUBLE_CARDS.DISABLE_ALL_CARDS:
       return { ...state, disableAll: action.payload.disableAll };
-    case DOUBLE_CARDS.SET_BOOSTER: {
-      const boosterType: BoosterTypes = action.payload.booster.type;
-      return {
-        ...state,
-        boosters: {
-          ...state.boosters,
-          [boosterType]: {
-            ...state.boosters[boosterType],
-            ...action.payload.booster
-          }
-        }
-      };
-    }
     case DOUBLE_CARDS.SHOW_ALL_CARDS: {
-      const hasBooster = state.boosters.showAll.value;
       const showAllCards = action.payload.showAll;
-      const prevValue = state.boosters.showAll.value;
       const cardsDeck = state.cardsDeck.map((card) => {
-        const side: CardSide =
-          showAllCards && hasBooster ? 'front' : card.matched ? 'front' : 'back';
-
+        const side: CardSide = showAllCards ? 'front' : card.matched ? 'front' : 'back';
         return { ...card, side };
       });
-      const showAll = {
-        ...state.boosters.showAll,
-        value: showAllCards ? prevValue - 1 : prevValue
-      };
-      stringifyDataToLocalStorage({ boosters: { ...state.boosters, showAll } });
 
       return {
         ...state,
-        cardsDeck,
-        boosters: { ...state.boosters, showAll }
+        disableAll: false,
+        cardsDeck
       };
     }
     default:

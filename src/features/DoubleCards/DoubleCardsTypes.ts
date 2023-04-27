@@ -15,18 +15,6 @@ export enum DOUBLE_CARDS {
   SHOW_ALL_CARDS = 'DOUBLE_CARDS/SHOW_ALL_CARDS'
 }
 
-export type BoosterTypes = 'showAll' | 'showRaw';
-export interface Booster {
-  type: BoosterTypes;
-  value: number;
-  date: Date;
-}
-
-export type Boosters = {
-  showAll: Booster;
-  showRaw: Booster;
-};
-
 export type GridSize = {
   columnAmount: number;
   rowAmount: number;
@@ -76,11 +64,6 @@ interface DisableAllCards {
   payload: { disableAll: boolean };
 }
 
-interface SetBooster {
-  type: typeof DOUBLE_CARDS.SET_BOOSTER;
-  payload: { booster: Booster };
-}
-
 interface ShowAllCards {
   type: typeof DOUBLE_CARDS.SHOW_ALL_CARDS;
   payload: { showAll: boolean };
@@ -96,5 +79,4 @@ export type DoubleCardsTypes =
   | CloseCards
   | MatchCards
   | DisableAllCards
-  | SetBooster
   | ShowAllCards;
