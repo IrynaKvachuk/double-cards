@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/double-cards/static/css/main.9cbc7417.css",
-    "main.js": "/double-cards/static/js/main.57a28992.js",
+    "main.css": "/double-cards/static/css/main.8faafdda.css",
+    "main.js": "/double-cards/static/js/main.bcb31f1f.js",
     "static/media/main-background.jpg": "/double-cards/static/media/main-background.b48ca2d07871fa7f0f27.jpg",
     "index.html": "/double-cards/index.html",
-    "main.9cbc7417.css.map": "/double-cards/static/css/main.9cbc7417.css.map",
-    "main.57a28992.js.map": "/double-cards/static/js/main.57a28992.js.map"
+    "main.8faafdda.css.map": "/double-cards/static/css/main.8faafdda.css.map",
+    "main.bcb31f1f.js.map": "/double-cards/static/js/main.bcb31f1f.js.map"
   },
   "entrypoints": [
-    "static/css/main.9cbc7417.css",
-    "static/js/main.57a28992.js"
+    "static/css/main.8faafdda.css",
+    "static/js/main.bcb31f1f.js"
   ]
 }
