@@ -1,4 +1,6 @@
-const CloudLayout: React.FC = () => {
+import React from 'react';
+
+const CloudLayout: React.FC = React.memo(() => {
   return (
     <div className="game-app_cloud-layout">
       <div id="cloud1">
@@ -21,6 +23,8 @@ const CloudLayout: React.FC = () => {
       </div>
     </div>
   );
-};
+});
+
+CloudLayout.displayName = 'CloudLayout';
 
 export default CloudLayout;
