@@ -1,4 +1,3 @@
-import { closeCards, setCardData } from '../../../features/DoubleCards/DoubleCardsActions';
 import { CardsDeck, CardSide } from '../../../features/Card/CardTypes';
 import store from '../../../store';
 
@@ -70,23 +69,4 @@ export const shuffleCards = (): CardsDeck => {
     .map((card, index) => ({ ...card, id: card.src + index }));
 
   return cardsDeck;
-};
-
-export const matchCards = () => {
-  setTimeout(() => {
-    const firstCard = store.getState().doubleCards.firstCard;
-    const secondCard = store.getState().doubleCards.secondCard;
-    if (!firstCard || !secondCard) return;
-
-    const isMatched = firstCard.name === secondCard.name;
-    const side = isMatched ? 'front' : 'back';
-
-    store.dispatch(setCardData({ ...firstCard, side, matched: isMatched }));
-    store.dispatch(setCardData({ ...secondCard, side, matched: isMatched }));
-
-    // clear store values
-    store.dispatch(closeCards());
-
-    return;
-  }, 700);
 };

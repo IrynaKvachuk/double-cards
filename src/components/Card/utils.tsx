@@ -1,7 +1,7 @@
 import { CardType } from '../../features/Card/CardTypes';
 import {
   chooseFirstCard,
-  chooseSecondCard,
+  closeCards,
   setCardData
 } from '../../features/DoubleCards/DoubleCardsActions';
 import store from '../../store';
@@ -21,18 +21,40 @@ export const openedCardClick = (props: OpenedCardClick) => {
   }, 500);
 };
 
-export type DoubleCardsTurnCard = {
+type MatchCards = {
+  firstCard: CardType;
+  secondCard: CardType;
+};
+
+export const matchCards = (props: MatchCards) => {
+  const { firstCard, secondCard } = props;
+
+  setTimeout(() => {
+    const matched = firstCard.name === secondCard.name;
+    const side = matched ? 'front' : 'back';
+
+    store.dispatch(setCardData({ ...firstCard, side, matched }));
+    store.dispatch(setCardData({ ...secondCard, side, matched }));
+
+    // clear store values
+    store.dispatch(closeCards());
+
+    return;
+  }, 700);
+};
+
+export type OpenCard = {
   card: CardType;
 };
 
-const openCard = (props: DoubleCardsTurnCard) => {
+const openCard = (props: OpenCard) => {
   const { card } = props;
   const firstCard = store.getState().doubleCards.firstCard;
   const secondCard = store.getState().doubleCards.secondCard;
 
   store.dispatch(setCardData({ ...card, side: 'front' }));
   if (!firstCard) return store.dispatch(chooseFirstCard(card));
-  if (!secondCard) return store.dispatch(chooseSecondCard(card));
+  if (!secondCard) matchCards({ firstCard, secondCard: card });
 };
 
 type ClosedCardClick = {

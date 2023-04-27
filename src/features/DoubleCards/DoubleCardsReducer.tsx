@@ -34,19 +34,6 @@ const initialState: DoubleCardsState = {
   }
 };
 
-type SetDeckCard = {
-  cardsDeck: CardsDeck;
-  card: CardType;
-};
-
-const setDeckCard = (props: SetDeckCard) => {
-  const { cardsDeck, card } = props;
-  return cardsDeck.map((cardFromDeck: CardType) => {
-    if (cardFromDeck.id === card.id) return card;
-    return cardFromDeck;
-  });
-};
-
 const doubleCardsReducer: Reducer<DoubleCardsState> = (state = initialState, action) => {
   switch (action.type) {
     case DOUBLE_CARDS.SET_GRID_SIZE:
@@ -64,7 +51,11 @@ const doubleCardsReducer: Reducer<DoubleCardsState> = (state = initialState, act
         cardsDeck: action.payload.cardsDeck
       };
     case DOUBLE_CARDS.SET_CARD_DATA: {
-      const cardsDeck = setDeckCard({ cardsDeck: state.cardsDeck, card: action.payload.card });
+      const card = action.payload.card;
+      const cardsDeck = state.cardsDeck.map((cardFromDeck: CardType) => {
+        if (cardFromDeck.id === card.id) return card;
+        return cardFromDeck;
+      });
       const gameNotFinished = cardsDeck.some((card) => !card.matched);
 
       return {

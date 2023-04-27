@@ -3,11 +3,9 @@ import { useSelector } from 'react-redux';
 import {
   selectCardsDeck,
   selectDisableAllCards,
-  selectGridSize,
-  selectSecondCard
+  selectGridSize
 } from '../../../features/DoubleCards/DoubleCardsSelects';
 import Card from '../../../components/Card';
-import { matchCards } from './utils';
 
 const GameTable: React.FC = () => {
   const [rowAmount, setRowAmount] = useState<number>(0);
@@ -16,7 +14,6 @@ const GameTable: React.FC = () => {
   const gridSize = useSelector(selectGridSize);
   const cardsDeck = useSelector(selectCardsDeck);
   const disableAllCards = useSelector(selectDisableAllCards);
-  const secondCard = useSelector(selectSecondCard);
 
   useEffect(() => {
     const { rowAmount, columnAmount } = gridSize;
@@ -26,11 +23,6 @@ const GameTable: React.FC = () => {
     setRowAmount(isRowBigger ? columnAmount : rowAmount);
     setColumnAmount(isRowBigger ? rowAmount : columnAmount);
   }, [gridSize]);
-
-  useEffect(() => {
-    if (!secondCard) return;
-    matchCards();
-  }, [secondCard]);
 
   return (
     <section
