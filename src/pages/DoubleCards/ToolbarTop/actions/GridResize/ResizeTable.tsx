@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { columnOnClick, columnOnMouseOver, tableOnMouseLeave } from './events';
 import { Dispatch, SetStateAction } from '../../../../../features/_common/types';
 import { isAllowedMount } from './utils';
+import { useEffectOnce } from '../../../../../hooks';
 
 type Props = {
   showResizeTable: boolean;
@@ -12,12 +13,18 @@ type Props = {
 const ResizeTable: React.FC<Props> = React.memo((props: Props) => {
   const { showResizeTable, setShowResizeTable } = props;
 
-  const rowAmount = Array.from({ length: 4 }, (_, i) => i + 1);
-  const columnAmount = Array.from({ length: 6 }, (_, i) => i + 1);
-
+  const [rowAmount, setRowAmount] = useState<Array<number>>([]);
+  const [columnAmount, setColumnAmount] = useState<Array<number>>([]);
   const [selectedRow, setSelectedRow] = useState<number>(2);
   const [selectedColumn, setSelectedColumn] = useState<number>(2);
   const [isAllowed, setIsAllowed] = useState(true);
+
+  useEffectOnce(() => {
+    const rowAmount = Array.from({ length: 4 }, (_, i) => i + 1);
+    const columnAmount = Array.from({ length: 6 }, (_, i) => i + 1);
+    setRowAmount(rowAmount);
+    setColumnAmount(columnAmount);
+  });
 
   useEffect(() => {
     setIsAllowed(isAllowedMount({ selectedRow, selectedColumn }));
