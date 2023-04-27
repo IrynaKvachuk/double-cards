@@ -1,23 +1,37 @@
+import React from 'react';
 import { useState } from 'react';
 import { reloadGame } from '../../utils';
 import Loader from '../../../../components/icons/Loader';
+import { Dispatch, SetStateAction } from '../../../../features/_common/types';
 
-const ReloadGame: React.FC = () => {
+type Reload = {
+  setIsLoading: Dispatch<SetStateAction<boolean>>;
+};
+
+const reload = (props: Reload) => {
+  const { setIsLoading } = props;
+
+  setIsLoading(true);
+  setTimeout(() => {
+    reloadGame();
+    setIsLoading(false);
+  }, 500);
+};
+
+const ReloadGame: React.FC = React.memo(() => {
   const [isLoading, setIsLoading] = useState(false);
 
-  const reload = () => {
-    setIsLoading(true);
-    setTimeout(() => {
-      reloadGame();
-      setIsLoading(false);
-    }, 500);
-  };
-
   return (
-    <button className="game-app_btn double-cards_btn" title="New Game" onClick={reload}>
+    <button
+      className="game-app_btn double-cards_btn"
+      title="New Game"
+      onClick={() => reload({ setIsLoading })}
+    >
       {isLoading ? <Loader size={40} /> : <span>&#8635;</span>}
     </button>
   );
-};
+});
+
+ReloadGame.displayName = 'ReloadGame';
 
 export default ReloadGame;
