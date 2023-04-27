@@ -7,7 +7,7 @@ import {
   selectSecondCard
 } from '../../../features/DoubleCards/DoubleCardsSelects';
 import Card from '../../../components/Card';
-import { matchCards, openCard } from './utils';
+import { matchCards } from './utils';
 
 const GameTable: React.FC = () => {
   const [rowAmount, setRowAmount] = useState<number>(0);
@@ -41,7 +41,7 @@ const GameTable: React.FC = () => {
       }}
     >
       {cardsDeck?.map((card) => (
-        <Card key={card.id} card={card} openCard={openCard} disabled={disableAllCards} />
+        <Card key={card.id} card={card} disabled={disableAllCards} />
       ))}
     </section>
   );

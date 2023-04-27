@@ -1,17 +1,14 @@
+import React from 'react';
 import { CardType } from '../../features/Card/CardTypes';
-import { DoubleCardsTurnCard } from '../../pages/DoubleCards/GameTable/utils';
 import { closedCardClick, openedCardClick } from './utils';
-
-export type OpenCard<P> = (props: P) => void;
 
 type Props = {
   card: CardType;
   disabled: boolean;
-  openCard: OpenCard<DoubleCardsTurnCard>;
 };
 
-const Card: React.FC<Props> = (props: Props) => {
-  const { card, disabled, openCard } = props;
+const Card: React.FC<Props> = React.memo((props: Props) => {
+  const { card, disabled } = props;
   const { src, side } = card;
   const flippedClass = side === 'front' ? 'flipped' : '';
 
@@ -31,13 +28,14 @@ const Card: React.FC<Props> = (props: Props) => {
           closedCardClick({
             event,
             card,
-            disabled,
-            openCard
+            disabled
           })
         }
       />
     </div>
   );
-};
+});
+
+Card.displayName = 'Card';
 
 export default Card;

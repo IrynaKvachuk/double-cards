@@ -1,16 +1,6 @@
-import { CardType } from '../../../features/Card/CardTypes';
-import {
-  chooseFirstCard,
-  chooseSecondCard,
-  closeCards,
-  setCardData
-} from '../../../features/DoubleCards/DoubleCardsActions';
+import { closeCards, setCardData } from '../../../features/DoubleCards/DoubleCardsActions';
 import { CardsDeck, CardSide } from '../../../features/Card/CardTypes';
 import store from '../../../store';
-
-export type DoubleCardsTurnCard = {
-  card: CardType;
-};
 
 const cardsImages: { src: string; name: string; side: CardSide; matched: false }[] = [
   {
@@ -80,16 +70,6 @@ export const shuffleCards = (): CardsDeck => {
     .map((card, index) => ({ ...card, id: card.src + index }));
 
   return cardsDeck;
-};
-
-export const openCard = (props: DoubleCardsTurnCard) => {
-  const { card } = props;
-  const firstCard = store.getState().doubleCards.firstCard;
-  const secondCard = store.getState().doubleCards.secondCard;
-
-  store.dispatch(setCardData({ ...card, side: 'front' }));
-  if (!firstCard) return store.dispatch(chooseFirstCard(card));
-  if (!secondCard) return store.dispatch(chooseSecondCard(card));
 };
 
 export const matchCards = () => {
