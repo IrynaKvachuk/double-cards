@@ -11,17 +11,21 @@ type Props = {
 const Stopwatch: React.FC<Props> = React.memo((props: Props) => {
   const { resetTime, runTimer, saveTime = () => {} } = props;
 
-  const [isRunning, setIsRunning] = useState(false);
   const [time, setTime] = useState<number>(0);
   const [minutes, setMinutes] = useState<number>(0);
   const [seconds, setSeconds] = useState<number>(0);
 
   useEffect(() => {
     let intervalId: NodeJS.Timer;
-    if (isRunning) intervalId = setInterval(() => setTime(time + 1), 10);
+    if (runTimer) {
+      intervalId = setInterval(() => setTime((time) => time + 1), 1000);
+    }
+    if (!runTimer && seconds) {
+      saveTime({ minutes, seconds });
+    }
 
     return () => clearInterval(intervalId);
-  }, [isRunning, time]);
+  }, [runTimer]);
 
   useEffect(() => {
     if (!resetTime) return;
@@ -32,13 +36,8 @@ const Stopwatch: React.FC<Props> = React.memo((props: Props) => {
   }, [resetTime]);
 
   useEffect(() => {
-    setIsRunning(runTimer);
-    if (!runTimer) saveTime({ minutes, seconds });
-  }, [runTimer]);
-
-  useEffect(() => {
-    setMinutes(Math.floor((time % 360000) / 6000));
-    setSeconds(Math.floor((time % 6000) / 100));
+    setMinutes(Math.floor((time % 3600) / 60));
+    setSeconds(Math.floor(time % 60));
   }, [time]);
 
   return (
