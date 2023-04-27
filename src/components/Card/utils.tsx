@@ -2,6 +2,7 @@ import { CardType } from '../../features/Card/CardTypes';
 import {
   chooseFirstCard,
   closeCards,
+  disableAllCards,
   setCardData
 } from '../../features/DoubleCards/DoubleCardsActions';
 import store from '../../store';
@@ -29,6 +30,7 @@ type MatchCards = {
 export const matchCards = (props: MatchCards) => {
   const { firstCard, secondCard } = props;
 
+  store.dispatch(disableAllCards(true));
   setTimeout(() => {
     const matched = firstCard.name === secondCard.name;
     const side = matched ? 'front' : 'back';
@@ -38,7 +40,6 @@ export const matchCards = (props: MatchCards) => {
 
     // clear store values
     store.dispatch(closeCards());
-
     return;
   }, 700);
 };
