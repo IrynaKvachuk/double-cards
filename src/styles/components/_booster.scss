@@ -1,0 +1,17 @@
+.booster {
+  &.selected {
+    & .booster_btn {
+      background-color: $color-background-dark;
+      color: $color-font-white;
+    }
+    & .show-all_count {
+      color: $color-font-white;
+    }
+  }
+
+  &_btn {
+    background-color: $color-btn-secondary;
+    -webkit-animation: bubble-animation 6s ease-out infinite;
+    animation: bubble-animation 6s ease-out infinite;
+  }
+}

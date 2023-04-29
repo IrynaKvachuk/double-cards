@@ -1,4 +1,4 @@
 import { RootStateT } from '../../store/rootReducer';
-import { Booster } from './BoosterTypes';
+import { BoosterIF } from './BoosterTypes';
 
-export const selectShowAll = (state: RootStateT): Booster => state.boosters.showAll;
+export const selectShowAllBooster = (state: RootStateT): BoosterIF => state.boosters.showAll;

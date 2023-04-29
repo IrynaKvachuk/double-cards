@@ -1,10 +1,10 @@
 import { Reducer } from 'redux';
-import { BOOSTERS, Booster, BoosterNameType } from './BoosterTypes';
+import { BOOSTERS, BoosterIF, BoosterNameType } from './BoosterTypes';
 import { stringifyDataToLocalStorage, tryParseDataFromLocalStorage } from '../../utils';
 
 export type DoubleCardsState = {
-  showAll: Booster;
-  showRaw: Booster;
+  showAll: BoosterIF;
+  showRaw: BoosterIF;
 };
 
 const initialState: DoubleCardsState = {
@@ -14,6 +14,13 @@ const initialState: DoubleCardsState = {
 
 const boostersReducer: Reducer<DoubleCardsState> = (state = initialState, action) => {
   switch (action.type) {
+    case BOOSTERS.INIT_BOOSTERS: {
+      return {
+        ...state,
+        showAll: { type: 'showAll', value: 3, date: new Date() },
+        showRaw: { type: 'showRaw', value: 4, date: new Date() }
+      };
+    }
     case BOOSTERS.SET_BOOSTER: {
       const boosterType: BoosterNameType = action.payload.booster.type;
       const refreshedBooster = { ...state[boosterType], ...action.payload.booster };
