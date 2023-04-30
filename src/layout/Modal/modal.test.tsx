@@ -1,5 +1,4 @@
 import { fireEvent, render, screen } from '@testing-library/react';
-import '../../tests/setupTests';
 import Modal from './Modal';
 
 describe('Modal', () => {
