@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useEffectOnce } from '../hooks';
+import { useEffectOnce } from '../../hooks';
 
 const FireworkCSS: React.FC = React.memo(() => {
   const [fireworkAmount, setFireworkAmount] = useState<Array<number>>([]);
@@ -11,7 +11,7 @@ const FireworkCSS: React.FC = React.memo(() => {
   });
 
   return (
-    <div className="fireworks-container">
+    <div className="fireworks-container" data-testid="fireworks-container">
       {fireworkAmount.map((index) => (
         <div key={index} className="firework" id={`firework${index + 1}`}>
           {explosionAmount.map((expIndex) => (
