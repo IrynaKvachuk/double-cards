@@ -1,9 +1,9 @@
-import { setGridSize } from '../../../../../features/DoubleCards/DoubleCardsActions';
-import { GridSize } from '../../../../../features/DoubleCards/DoubleCardsTypes';
-import { Dispatch, SetStateAction } from '../../../../../features/_common/types';
-import store from '../../../../../store';
-import { stringifyDataToLocalStorage } from '../../../../../utils';
-import { reloadGame } from '../../../utils';
+import { setGridSize } from '../../features/DoubleCards/DoubleCardsActions';
+import { GridSize } from '../../features/DoubleCards/DoubleCardsTypes';
+import { Dispatch, SetStateAction } from '../../features/_common/types';
+import store from '../../store';
+import { stringifyDataToLocalStorage } from '../../utils';
+import { reloadGame } from '../../pages/DoubleCards/utils';
 import { getSelectedCellIds, isAllowedMount } from './utils';
 
 type TableOnMouseLeave = {

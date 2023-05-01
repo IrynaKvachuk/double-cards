@@ -1,9 +1,9 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
+import { useEffectOnce } from '../../hooks';
+import { Dispatch, SetStateAction } from '../../features/_common/types';
 import { columnOnClick, columnOnMouseOver, tableOnMouseLeave } from './events';
-import { Dispatch, SetStateAction } from '../../../../../features/_common/types';
 import { isAllowedMount } from './utils';
-import { useEffectOnce } from '../../../../../hooks';
 
 type Props = {
   showResizeTable: boolean;
@@ -33,7 +33,10 @@ const ResizeTable: React.FC<Props> = React.memo((props: Props) => {
   if (!showResizeTable) return null;
   return (
     <div className="grid-resize_table">
-      <table onMouseLeave={() => tableOnMouseLeave({ setShowResizeTable })}>
+      <table
+        data-testid="resize-table"
+        onMouseLeave={() => tableOnMouseLeave({ setShowResizeTable })}
+      >
         <tbody>
           {rowAmount.map((rowIndex) => (
             <tr key={rowIndex} data-id={rowIndex}>
