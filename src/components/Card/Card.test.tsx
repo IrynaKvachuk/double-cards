@@ -4,13 +4,19 @@ import { render, screen } from '@testing-library/react';
 import Card from '.';
 import { CardType } from '../../features/Card/CardTypes';
 import store from '../../store';
+import { CardSide } from '../../features/Card/CardTypes';
 
-const setUp = () => {
+type SetUp = {
+  side?: CardSide;
+};
+
+const setUp = (props: SetUp) => {
+  const { side = 'back' } = props;
   const card: CardType = {
     // src: `${process.env.PUBLIC_URL}/cards/palm.png`,
     src: `/cards/palm.png`,
     name: 'palm',
-    side: 'back',
+    side,
     matched: false,
     id: 'palm1'
   };
@@ -41,8 +47,16 @@ describe('Card', () => {
   afterEach(() => {});
 
   test('renders card', () => {
-    const { cardContainer } = setUp();
+    const { cardContainer } = setUp({});
+    const cardBack = screen.getByAltText('card back');
 
     expect(cardContainer).toBeInTheDocument();
+    expect(cardBack).toBeInTheDocument();
+  });
+  test('renders card front', () => {
+    setUp({ side: 'front' });
+    const cardFront = screen.getByAltText('card front');
+
+    expect(cardFront).toBeInTheDocument();
   });
 });
