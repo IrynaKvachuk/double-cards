@@ -11,6 +11,7 @@ export enum DOUBLE_CARDS {
   CLOSE_CARDS = 'DOUBLE_CARDS/CLEAR_CARD',
   MATCH_CARDS = 'DOUBLE_CARDS/MATCH_CARDS',
   DISABLE_ALL_CARDS = 'DOUBLE_CARDS/DISABLE_ALL_CARDS',
+  FREEZE_CARD = 'DOUBLE_CARDS/FREEZE_CARD',
   SET_BOOSTER = 'DOUBLE_CARDS/SET_BOOSTER',
   SHOW_ALL_CARDS = 'DOUBLE_CARDS/SHOW_ALL_CARDS'
 }
@@ -64,6 +65,11 @@ interface DisableAllCards {
   payload: { disableAll: boolean };
 }
 
+interface FreezeCard {
+  type: typeof DOUBLE_CARDS.FREEZE_CARD;
+  payload: { cardIndex: number; toFreeze: boolean };
+}
+
 interface ShowAllCards {
   type: typeof DOUBLE_CARDS.SHOW_ALL_CARDS;
   payload: { showAll: boolean };
@@ -79,4 +85,5 @@ export type DoubleCardsTypes =
   | CloseCards
   | MatchCards
   | DisableAllCards
+  | FreezeCard
   | ShowAllCards;

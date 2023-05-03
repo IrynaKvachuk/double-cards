@@ -1,6 +1,6 @@
 import React from 'react';
 import { CardType } from '../../features/Card/CardTypes';
-import { closedCardClick, openedCardClick } from './utils';
+import { closedCardClick, frozenCardClick, openedCardClick } from './utils';
 
 type Props = {
   card: CardType;
@@ -9,27 +9,25 @@ type Props = {
 
 const Card: React.FC<Props> = React.memo((props: Props) => {
   const { card, disabled } = props;
-  const { src, side } = card;
+  const { src, side, freezed } = card;
   const flippedClass = side === 'front' ? 'flipped' : '';
 
   return (
     <div
       className={`double-cards_card ${flippedClass}`}
-      data-disabled={disabled}
+      data-disabled={disabled || freezed}
       data-testid="card"
     >
       <img
         src={src}
         className="double-cards_card--front"
         alt="card front"
-        data-testid="card-front"
         onClick={(event) => openedCardClick({ event })}
       />
       <img
         src={`${process.env.PUBLIC_URL}/card-cover.png`}
-        className="double-cards_card--back"
+        className={`double-cards_card--back ${freezed ? 'freezed' : ''} `}
         alt="card back"
-        data-testid="card-back"
         onClick={(event) =>
           closedCardClick({
             event,
@@ -38,6 +36,14 @@ const Card: React.FC<Props> = React.memo((props: Props) => {
           })
         }
       />
+      {freezed ? (
+        <img
+          src={`${process.env.PUBLIC_URL}/card-frozen.png`}
+          className="double-cards_card--frozen"
+          alt="card frozen"
+          onClick={(event) => frozenCardClick({ event })}
+        />
+      ) : null}
     </div>
   );
 });

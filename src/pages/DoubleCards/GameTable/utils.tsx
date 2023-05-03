@@ -1,58 +1,42 @@
 import { CardsDeck, CardSide } from '../../../features/Card/CardTypes';
 import store from '../../../store';
 
-const cardsImages: { src: string; name: string; side: CardSide; matched: false }[] = [
+const cardsImages: { src: string; name: string }[] = [
   {
     src: `${process.env.PUBLIC_URL}/cards/eucaliptus.png`,
-    name: 'eucaliptus',
-    side: 'back',
-    matched: false
+    name: 'eucaliptus'
   },
-  { src: `${process.env.PUBLIC_URL}/cards/palm.png`, name: 'palm', side: 'back', matched: false },
-  { src: `${process.env.PUBLIC_URL}/cards/bird.png`, name: 'bird', side: 'back', matched: false },
+  { src: `${process.env.PUBLIC_URL}/cards/palm.png`, name: 'palm' },
+  { src: `${process.env.PUBLIC_URL}/cards/bird.png`, name: 'bird' },
   {
     src: `${process.env.PUBLIC_URL}/cards/flower.png`,
-    name: 'flower',
-    side: 'back',
-    matched: false
+    name: 'flower'
   },
-  { src: `${process.env.PUBLIC_URL}/cards/sun.png`, name: 'sun', side: 'back', matched: false },
-  { src: `${process.env.PUBLIC_URL}/cards/waves.png`, name: 'waves', side: 'back', matched: false },
+  { src: `${process.env.PUBLIC_URL}/cards/sun.png`, name: 'sun' },
+  { src: `${process.env.PUBLIC_URL}/cards/waves.png`, name: 'waves' },
   {
     src: `${process.env.PUBLIC_URL}/cards/umbrella.png`,
-    name: 'umbrella',
-    side: 'back',
-    matched: false
+    name: 'umbrella'
   },
   {
     src: `${process.env.PUBLIC_URL}/cards/drop.png`,
-    name: 'drop',
-    side: 'back',
-    matched: false
+    name: 'drop'
   },
   {
     src: `${process.env.PUBLIC_URL}/cards/spiral.png`,
-    name: 'spiral',
-    side: 'back',
-    matched: false
+    name: 'spiral'
   },
   {
     src: `${process.env.PUBLIC_URL}/cards/triangle.png`,
-    name: 'triangle',
-    side: 'back',
-    matched: false
+    name: 'triangle'
   },
   {
     src: `${process.env.PUBLIC_URL}/cards/squers.png`,
-    name: 'squers',
-    side: 'back',
-    matched: false
+    name: 'squers'
   },
   {
     src: `${process.env.PUBLIC_URL}/cards/ballon.png`,
-    name: 'ballon',
-    side: 'back',
-    matched: false
+    name: 'ballon'
   }
 ];
 
@@ -66,7 +50,17 @@ export const shuffleCards = (): CardsDeck => {
 
   const cardsDeck = [...uniqueCards, ...uniqueCards]
     .sort(() => Math.random() - 0.5)
-    .map((card, index) => ({ ...card, id: card.src + index }));
+    .map((card, index) => {
+      const side = 'back' as CardSide;
+      return {
+        ...card,
+        id: card.src + index,
+        index,
+        side,
+        matched: false,
+        freezed: false
+      };
+    });
 
   return cardsDeck;
 };

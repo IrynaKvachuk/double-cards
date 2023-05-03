@@ -11,6 +11,8 @@ export type DoubleCardsState = {
   secondCard: CardType | null;
   time: Timer;
   turns: number;
+  matchedCardsCount: number;
+  activeCardsIndexes: Array<number>;
   disableAll: boolean;
   gameReloaded: number;
   gameFinished: boolean;
@@ -23,6 +25,8 @@ const initialState: DoubleCardsState = {
   secondCard: null,
   time: initTimerValues,
   turns: 0,
+  matchedCardsCount: 0,
+  activeCardsIndexes: [],
   disableAll: false,
   gameReloaded: 0,
   gameFinished: false
@@ -36,24 +40,32 @@ const doubleCardsReducer: Reducer<DoubleCardsState> = (state = initialState, act
         gameReloaded: state.gameReloaded + 1,
         gridSize: { columnAmount: action.payload.columnAmount, rowAmount: action.payload.rowAmount }
       };
-    case DOUBLE_CARDS.SET_CARDS_DECK:
+    case DOUBLE_CARDS.SET_CARDS_DECK: {
+      const cardsDeck = action.payload.cardsDeck;
       return {
         ...initialState,
         gameReloaded: state.gameReloaded + 1,
         gridSize: { ...state.gridSize },
-        cardsDeck: action.payload.cardsDeck
+        cardsDeck,
+        activeCardsIndexes: cardsDeck.map((card: CardType) => card.index)
       };
+    }
     case DOUBLE_CARDS.SET_CARD_DATA: {
       const card = action.payload.card;
+      const { matched, index } = card;
       const cardsDeck = state.cardsDeck.map((cardFromDeck: CardType) => {
         if (cardFromDeck.id === card.id) return card;
         return cardFromDeck;
       });
       const gameNotFinished = cardsDeck.some((card) => !card.matched);
+      const activeCardsIndexes = state.activeCardsIndexes;
+      if (matched) state.activeCardsIndexes.splice(state.activeCardsIndexes.indexOf(index), 1);
 
       return {
         ...state,
         cardsDeck,
+        matchedCardsCount: matched ? state.matchedCardsCount + 1 : state.matchedCardsCount,
+        activeCardsIndexes,
         gameFinished: !gameNotFinished
       };
     }
@@ -73,6 +85,15 @@ const doubleCardsReducer: Reducer<DoubleCardsState> = (state = initialState, act
       };
     case DOUBLE_CARDS.DISABLE_ALL_CARDS:
       return { ...state, disableAll: action.payload.disableAll };
+    case DOUBLE_CARDS.FREEZE_CARD: {
+      const freezeIndex = action.payload.cardIndex;
+      const cardsDeck = state.cardsDeck.map((cardFromDeck: CardType) => {
+        const freezed = cardFromDeck.index === freezeIndex && action.payload.toFreeze;
+        return { ...cardFromDeck, freezed };
+      });
+
+      return { ...state, cardsDeck };
+    }
     case DOUBLE_CARDS.SHOW_ALL_CARDS: {
       const showAllCards = action.payload.showAll;
       const cardsDeck = state.cardsDeck.map((card) => {

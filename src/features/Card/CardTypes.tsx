@@ -5,7 +5,9 @@ export type CardType = {
   id: string;
   name: string;
   side: CardSide;
-  matched: boolean; // show all for 3s with side and close all needed with matched
+  matched: boolean;
+  index: number;
+  freezed: boolean;
 };
 
 export type CardsDeck = Array<CardType>;

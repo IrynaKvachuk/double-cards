@@ -46,6 +46,11 @@ export const disableAllCards = (input: boolean): DoubleCardsTypes => ({
   payload: { disableAll: input }
 });
 
+export const freezeCard = (input: { cardIndex: number; toFreeze: boolean }): DoubleCardsTypes => ({
+  type: DOUBLE_CARDS.FREEZE_CARD,
+  payload: { ...input }
+});
+
 export const showAllCards = (input: boolean): DoubleCardsTypes => ({
   type: DOUBLE_CARDS.SHOW_ALL_CARDS,
   payload: { showAll: input }

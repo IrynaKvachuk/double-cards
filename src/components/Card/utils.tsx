@@ -7,6 +7,14 @@ import {
 } from '../../features/DoubleCards/DoubleCardsActions';
 import store from '../../store';
 
+// shake animation
+const shakeCard = (element: HTMLImageElement) => {
+  element.classList.add('shake');
+  setTimeout(() => {
+    element.classList.remove('shake');
+  }, 500);
+};
+
 type OpenedCardClick = {
   event: React.MouseEvent<HTMLImageElement>;
 };
@@ -14,12 +22,7 @@ type OpenedCardClick = {
 export const openedCardClick = (props: OpenedCardClick) => {
   const { event } = props;
   const imgElement = event.target as HTMLImageElement;
-
-  // shake animation
-  imgElement.classList.add('shake');
-  setTimeout(() => {
-    imgElement.classList.remove('shake');
-  }, 500);
+  shakeCard(imgElement);
 };
 
 type MatchCards = {
@@ -66,9 +69,10 @@ type ClosedCardClick = {
 
 export const closedCardClick = (props: ClosedCardClick) => {
   const { event, card, disabled } = props;
-  if (disabled) return;
-
+  const { freezed } = card;
   const imgElement = event.target as HTMLImageElement;
+
+  if (disabled || freezed) return;
 
   openCard({ card });
 
@@ -77,4 +81,14 @@ export const closedCardClick = (props: ClosedCardClick) => {
   setTimeout(() => {
     imgElement.classList.remove('flip');
   }, 500);
+};
+
+type FrozenCardClick = {
+  event: React.MouseEvent<HTMLImageElement>;
+};
+
+export const frozenCardClick = (props: FrozenCardClick) => {
+  const { event } = props;
+  const imgElement = event.target as HTMLImageElement;
+  shakeCard(imgElement);
 };
