@@ -1,11 +1,11 @@
 import { GameResult } from '.';
 import { GridSize } from '../../../features/DoubleCards/DoubleCardsTypes';
-import { Dispatch, SetStateAction } from '../../../features/_common/types';
+import { DispatchT, SetStateAction } from '../../../features/_common/types';
 import { stringifyDataToLocalStorage, tryParseDataFromLocalStorage } from '../../../utils';
 import { reloadGame } from '../utils';
 
 type OnClose = {
-  setIsOpen: Dispatch<SetStateAction<boolean>>;
+  setIsOpen: DispatchT<SetStateAction<boolean>>;
 };
 
 export const onClose = (props: OnClose) => {
@@ -20,7 +20,7 @@ export const onClose = (props: OnClose) => {
 type RefreshBestResult = {
   newResult: GameResult;
   gridSize: GridSize;
-  setGameResult: Dispatch<SetStateAction<GameResult>>;
+  setGameResult: DispatchT<SetStateAction<GameResult>>;
 };
 
 export const refreshBestResult = (props: RefreshBestResult) => {

@@ -1,13 +1,13 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 import { useEffectOnce } from '../../hooks';
-import { Dispatch, SetStateAction } from '../../features/_common/types';
+import { DispatchT, SetStateAction } from '../../features/_common/types';
 import { columnOnClick, columnOnMouseOver, tableOnMouseLeave } from './events';
 import { isAllowedMount } from './utils';
 
 type Props = {
   showResizeTable: boolean;
-  setShowResizeTable: Dispatch<SetStateAction<boolean>>;
+  setShowResizeTable: DispatchT<SetStateAction<boolean>>;
 };
 
 const ResizeTable: React.FC<Props> = React.memo((props: Props) => {

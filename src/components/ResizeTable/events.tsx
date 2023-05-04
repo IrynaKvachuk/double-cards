@@ -1,13 +1,13 @@
 import { setGridSize } from '../../features/DoubleCards/DoubleCardsActions';
 import { GridSize } from '../../features/DoubleCards/DoubleCardsTypes';
-import { Dispatch, SetStateAction } from '../../features/_common/types';
+import { DispatchT, SetStateAction } from '../../features/_common/types';
 import store from '../../store';
 import { stringifyDataToLocalStorage } from '../../utils';
 import { reloadGame } from '../../pages/DoubleCards/utils';
 import { getSelectedCellIds, isAllowedMount } from './utils';
 
 type TableOnMouseLeave = {
-  setShowResizeTable: Dispatch<SetStateAction<boolean>>;
+  setShowResizeTable: DispatchT<SetStateAction<boolean>>;
 };
 
 export const tableOnMouseLeave = (props: TableOnMouseLeave) => {
@@ -20,8 +20,8 @@ export const tableOnMouseLeave = (props: TableOnMouseLeave) => {
 
 type ColumnOnMouseOver = {
   event: React.MouseEvent<HTMLTableCellElement>;
-  setSelectedColumn: Dispatch<SetStateAction<number>>;
-  setSelectedRow: Dispatch<SetStateAction<number>>;
+  setSelectedColumn: DispatchT<SetStateAction<number>>;
+  setSelectedRow: DispatchT<SetStateAction<number>>;
 };
 
 export const columnOnMouseOver = (props: ColumnOnMouseOver) => {
@@ -38,8 +38,8 @@ export const columnOnMouseOver = (props: ColumnOnMouseOver) => {
 type ColumnOnClick = {
   event: React.MouseEvent<HTMLTableCellElement>;
   isAllowed: boolean;
-  setShowResizeTable: Dispatch<SetStateAction<boolean>>;
-  setIsAllowed: Dispatch<SetStateAction<boolean>>;
+  setShowResizeTable: DispatchT<SetStateAction<boolean>>;
+  setIsAllowed: DispatchT<SetStateAction<boolean>>;
 };
 
 export const changeGridSize = (props: GridSize) => {

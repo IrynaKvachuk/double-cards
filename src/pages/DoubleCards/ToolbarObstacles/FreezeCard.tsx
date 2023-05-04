@@ -6,10 +6,10 @@ import {
   selectTurns
 } from '../../../features/DoubleCards/DoubleCardsSelects';
 import { setFreezer } from './utils';
-import { Dispatch, SetStateAction } from '../../../features/_common/types';
+import { DispatchT, SetStateAction } from '../../../features/_common/types';
 
 type Props = {
-  setShowObstaclesToolbar: Dispatch<SetStateAction<boolean>>;
+  setShowObstaclesToolbar: DispatchT<SetStateAction<boolean>>;
 };
 
 const FreezeCard = (props: Props) => {

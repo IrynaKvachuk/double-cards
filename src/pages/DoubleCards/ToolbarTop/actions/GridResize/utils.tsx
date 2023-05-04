@@ -1,7 +1,7 @@
-import { Dispatch, SetStateAction } from '../../../../../features/_common/types';
+import { DispatchT, SetStateAction } from '../../../../../features/_common/types';
 
 type OnResizeBtnClick = {
-  setShowResizeTable: Dispatch<SetStateAction<boolean>>;
+  setShowResizeTable: DispatchT<SetStateAction<boolean>>;
 };
 
 export const onResizeBtnClick = (props: OnResizeBtnClick) => {

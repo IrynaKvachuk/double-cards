@@ -1,5 +1,5 @@
 import { Path, Shell } from '..';
-import { Dispatch, SetStateAction } from '../../../features/_common/types';
+import { DispatchT, SetStateAction } from '../../../features/_common/types';
 import { createPath } from './pathes';
 import { addNewShell, createShell } from './shells';
 
@@ -18,8 +18,8 @@ let lastRun = 0;
 
 type ResetSize = {
   canvas: HTMLCanvasElement | null;
-  setCWidth: Dispatch<SetStateAction<number>>;
-  setCHeight: Dispatch<SetStateAction<number>>;
+  setCWidth: DispatchT<SetStateAction<number>>;
+  setCHeight: DispatchT<SetStateAction<number>>;
 };
 
 export const resetSize = (props: ResetSize) => {

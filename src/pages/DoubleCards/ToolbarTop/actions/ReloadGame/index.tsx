@@ -2,10 +2,10 @@ import React from 'react';
 import { useState } from 'react';
 import { reloadGame } from '../../../utils';
 import Loader from '../../../../../components/icons/Loader';
-import { Dispatch, SetStateAction } from '../../../../../features/_common/types';
+import { DispatchT, SetStateAction } from '../../../../../features/_common/types';
 
 type Reload = {
-  setIsLoading: Dispatch<SetStateAction<boolean>>;
+  setIsLoading: DispatchT<SetStateAction<boolean>>;
 };
 
 const reload = (props: Reload) => {

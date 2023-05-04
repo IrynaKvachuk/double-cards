@@ -1,12 +1,12 @@
 import { BoosterIF } from '../../features/Boosters/BoosterTypes';
 import { setBooster } from '../../features/Boosters/BoostersActions';
-import { Dispatch, SetStateAction } from '../../features/_common/types';
+import { DispatchT, SetStateAction } from '../../features/_common/types';
 import store from '../../store';
 
 type BoosterClick = {
   event: React.MouseEvent<HTMLButtonElement>;
   boosterData: BoosterIF;
-  setSelected: Dispatch<SetStateAction<boolean>>;
+  setSelected: DispatchT<SetStateAction<boolean>>;
   callback: (boosterData: BoosterIF) => void;
 };
 
