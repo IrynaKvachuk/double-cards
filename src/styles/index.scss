@@ -5,6 +5,7 @@
 
 // ANIMATIONS
 @import './utils/animations/bubble';
+@import './utils/animations/pulse';
 @import './utils/animations/shake';
 
 // BASE
@@ -25,6 +26,7 @@
 @import './pages/doubleCards/toobarTop/actions/gridResize';
 @import './pages/doubleCards/winPopup';
 @import './pages/doubleCards/toolbarRight/toolbarRight';
+@import './pages/doubleCards/toolbarObtacles/toolbarObstacles';
 
 // COMPONENTS
 @import './components/booster';

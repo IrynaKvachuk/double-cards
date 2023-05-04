@@ -10,6 +10,7 @@ import { getPrevSettings, reloadGame } from './utils';
 import WinPopup from './WinPopup';
 import GameTable from './GameTable';
 import ToolbarRight from './ToolbarRight';
+import ToolbarObstacles from './ToolbarObstacles';
 
 const DoubleCards: React.FC = () => {
   const dispatch = useDispatch();
@@ -33,6 +34,7 @@ const DoubleCards: React.FC = () => {
       <ToolbarTop />
       <ToolbarRight />
       <GameTable />
+      <ToolbarObstacles />
       {modal === 'WinPopup' ? <WinPopup /> : null}
     </Container>
   );
