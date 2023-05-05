@@ -18,7 +18,9 @@ const setUp = (props: SetUp) => {
     name: 'palm',
     side,
     matched: false,
-    id: 'palm1'
+    id: 'palm1',
+    index: 1,
+    freezed: false
   };
 
   const mockData = {
