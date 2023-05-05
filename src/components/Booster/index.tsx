@@ -29,6 +29,7 @@ const Booster: React.FC<Props> = React.memo((props: Props) => {
 
   const [selected, setSelected] = useState(false);
 
+  // add daily boosters
   useEffect(() => {
     const today = getDateOfYear(new Date());
 
@@ -41,7 +42,7 @@ const Booster: React.FC<Props> = React.memo((props: Props) => {
         date: new Date()
       })
     );
-  }, []);
+  }, [date]);
 
   return (
     <div className={`booster ${className} ${selected ? 'selected' : ''}`}>
