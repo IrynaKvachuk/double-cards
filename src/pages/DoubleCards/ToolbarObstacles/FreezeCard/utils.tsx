@@ -1,6 +1,6 @@
-import { freezeCard } from '../../../features/DoubleCards/DoubleCardsActions';
-import { DispatchT, SetStateAction } from '../../../features/_common/types';
-import store from '../../../store';
+import { freezeCard } from '../../../../features/DoubleCards/DoubleCardsActions';
+import { DispatchT, SetStateAction } from '../../../../features/_common/types';
+import store from '../../../../store';
 
 type DisableFreezer = {
   setStopFreezing: DispatchT<SetStateAction<boolean>>;
@@ -46,5 +46,21 @@ export const setFreezer = (props: SetFreezer) => {
   }
 
   setFreezeTimer((preValue) => preValue - 1);
+  return;
+};
+
+type ReloadFreezer = {
+  setStopFreezing: DispatchT<SetStateAction<boolean>>;
+  setCreateObstacle: DispatchT<SetStateAction<boolean>>;
+  setFreezeTimer: DispatchT<SetStateAction<number>>;
+};
+
+export const reloadFreezer = (props: ReloadFreezer) => {
+  const { setStopFreezing, setCreateObstacle, setFreezeTimer } = props;
+  setStopFreezing(false);
+  setCreateObstacle(true);
+  setFreezeTimer(3);
+  store.dispatch(freezeCard({ cardIndex: 0, toFreeze: false }));
+
   return;
 };

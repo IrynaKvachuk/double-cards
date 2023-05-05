@@ -4,9 +4,9 @@ import {
   selectCardsDeck,
   selectGameReloaded,
   selectTurns
-} from '../../../features/DoubleCards/DoubleCardsSelects';
-import { setFreezer } from './utils';
-import { DispatchT, SetStateAction } from '../../../features/_common/types';
+} from '../../../../features/DoubleCards/DoubleCardsSelects';
+import { reloadFreezer, setFreezer } from './utils';
+import { DispatchT, SetStateAction } from '../../../../features/_common/types';
 
 type Props = {
   setShowObstaclesToolbar: DispatchT<SetStateAction<boolean>>;
@@ -37,9 +37,7 @@ const FreezeCard = (props: Props) => {
 
   useEffect(() => {
     if (!gameReloaded) return;
-    setStopFreezing(false);
-    setCreateObstacle(true);
-    setFreezeTimer(3);
+    reloadFreezer({ setStopFreezing, setCreateObstacle, setFreezeTimer });
   }, [gameReloaded]);
 
   return createObstacle ? <span>Freeze in {freezeTimer} moves</span> : null;
