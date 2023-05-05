@@ -4,9 +4,14 @@ import { render, screen } from '@testing-library/react';
 import store from '../../store';
 import ResizeTable from '.';
 
-const setUp = () => {
+type SetUp = {
+  showResizeTable?: boolean;
+};
+
+const setUp = (props: SetUp) => {
+  const { showResizeTable = true } = props;
   const mockData = {
-    showResizeTable: true,
+    showResizeTable,
     setShowResizeTable: jest.fn()
   };
   const utils = render(
@@ -16,7 +21,7 @@ const setUp = () => {
       </Provider>
     </Router>
   );
-  const table = screen.getByTestId('resize-table');
+  const table = screen.queryByTestId('resize-table');
 
   return {
     table,
@@ -26,8 +31,13 @@ const setUp = () => {
 };
 
 describe('ResizeTable', () => {
+  test('table is not rendered without prop', () => {
+    const { table } = setUp({ showResizeTable: false });
+
+    expect(table).not.toBeInTheDocument();
+  });
   test('renders table', () => {
-    const { table } = setUp();
+    const { table } = setUp({});
 
     expect(table).toBeInTheDocument();
   });
