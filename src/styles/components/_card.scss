@@ -5,7 +5,7 @@
         transition: filter ease-in-out 0.1s;
         box-shadow: 0 0 1rem 0.5rem $color-font-light-gray;
         border: 0.2rem solid $color-font-white;
-        filter: brightness(1.2);
+        filter: var(--color-card-hue) var(--color-card-hue-hover) brightness(1.2);
       }
     }
   }
@@ -31,6 +31,7 @@
     &--back {
       transition: all ease-in 0.2s;
       transition-delay: 0.2s;
+      filter: var(--color-card-hue) var(--color-card-contrast);
 
       &.freezed {
         display: none;

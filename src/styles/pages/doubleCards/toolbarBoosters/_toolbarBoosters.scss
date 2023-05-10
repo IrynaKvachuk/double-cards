@@ -1,0 +1,66 @@
+.toolbar-boosters {
+  width: 6rem;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: 10rem 0;
+  right: -10rem;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  &.game-app_container {
+    border-radius: 2rem;
+    box-shadow: 0 0 2rem 0 rgba(0, 0, 0, 0.1);
+
+    &:before {
+      margin: 0 auto;
+      width: 6rem;
+      border-radius: 2rem;
+      background: var(--color-background-boosters);
+      filter: none;
+      box-shadow: inset 0 0 200px rgba(255, 255, 255, 0.2);
+    }
+  }
+
+  & .double-cards_btn {
+    padding: 1rem;
+    border: 0.3rem solid var(--color-border-primary);
+    border-radius: 50%;
+  }
+
+  & .booster {
+    position: relative;
+
+    &_count {
+      position: absolute;
+      bottom: 0.5rem;
+      right: 0.5rem;
+      font-size: 1.2rem;
+      font-weight: $font-weight-bold;
+      color: var(--color-font-main);
+    }
+  }
+}
+
+@media screen and (max-width: $breakpoint-max-small-screen) {
+  .toolbar-boosters {
+    width: auto;
+    height: 6rem;
+    top: auto;
+    left: 0;
+    right: 0;
+    bottom: -7rem;
+    margin: 0;
+    flex-direction: row;
+
+    &.game-app_container {
+      &:before {
+        width: auto;
+        background: var(--color-background-boosters);
+      }
+    }
+  }
+}

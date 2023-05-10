@@ -9,7 +9,7 @@
     padding: 1.2rem 1.4rem;
 
     text-decoration: none;
-    color: $color-font-dark-gray;
+    color: var(--color-font-secondary);
     font-size: var(--size);
     font-weight: $font-weight-bold;
     text-transform: uppercase;
@@ -42,7 +42,7 @@
 
     &:hover {
       transform: scale(102%);
-      color: $color-font-dark-gray;
+      color: var(--color-font-secondary);
 
       &::before {
         left: 150%;

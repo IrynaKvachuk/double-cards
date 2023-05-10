@@ -2,8 +2,7 @@
 @import './utils/variables';
 @import './utils/buttons';
 @import './utils/titleLogo';
-
-// ANIMATIONS
+// UTILS --> animations
 @import './utils/animations/bubble';
 @import './utils/animations/pulse';
 @import './utils/animations/shake';
@@ -12,20 +11,22 @@
 @import './base';
 
 // LAYOUT
+@import './layout/themeWrapper/themeWrapper';
+@import './layout/themeWrapper/themeToggle';
 @import './layout/container';
 @import './layout/cloudLayout';
 @import './layout/header';
 @import './layout/footer';
-@import './layout/toolbarTop';
 @import './layout/modal';
+@import './layout/toolbarTop';
 
 // PAGES
 @import './pages/doubleCards/doubleCards';
 @import './pages/doubleCards/gameTable';
-@import './pages/doubleCards/toobarTop/toolbarTop';
-@import './pages/doubleCards/toobarTop/actions/gridResize';
 @import './pages/doubleCards/winPopup';
-@import './pages/doubleCards/toolbarRight/toolbarRight';
+@import './pages/doubleCards/toobarMain/toolbarMain';
+@import './pages/doubleCards/toobarMain/actions/gridResize';
+@import './pages/doubleCards/toolbarBoosters/toolbarBoosters';
 @import './pages/doubleCards/toolbarObtacles/toolbarObstacles';
 
 // COMPONENTS

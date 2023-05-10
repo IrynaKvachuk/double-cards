@@ -1,0 +1,319 @@
+.theme {
+  &__toggle {
+    --background-dark: #211042;
+    --background-dark-light: rgba(0, 0, 0, 0.1);
+    --background-white: #ffffff;
+    --background-light: #faeaf1;
+    --background-light-yellow: #fffff9;
+    --background-blue: #24d7f7;
+    --background-blue-dark: #34495e;
+    --background-light-blue: #f7ffff;
+    --background-orange: #e67e22;
+
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: scale(0.3);
+
+    #hide-checkbox {
+      opacity: 0;
+      height: 0;
+      width: 0;
+    }
+
+    .toggle {
+      position: relative;
+      cursor: pointer;
+      display: inline-block;
+      width: 20rem;
+      height: 10rem;
+      background: var(--background-dark);
+      border-radius: 5rem;
+      transition: 500ms;
+      overflow: hidden;
+    }
+
+    .toggle-button {
+      position: absolute;
+      display: inline-block;
+      top: 0.7rem;
+      left: 0.6rem;
+      width: 8.6rem;
+      height: 8.6rem;
+      border-radius: 50%;
+      background: var(--background-light);
+      overflow: hidden;
+      box-shadow: 0 0 3.5rem 0.4rem $color-background-white;
+      transition: all 500ms ease-out;
+    }
+
+    .crater {
+      position: absolute;
+      display: inline-block;
+      background: var(--background-light);
+      border-radius: 50%;
+      transition: 500ms;
+    }
+
+    .crater-1 {
+      background: var(--background-light-yellow);
+      width: 8.6rem;
+      height: 8.6rem;
+      left: 1rem;
+      bottom: 1rem;
+    }
+
+    .crater-2 {
+      width: 2rem;
+      height: 2rem;
+      top: -0.7rem;
+      left: 4.4rem;
+    }
+
+    .crater-3 {
+      width: 1.6rem;
+      height: 1.6rem;
+      top: 2rem;
+      right: -0.4rem;
+    }
+
+    .crater-4 {
+      width: 1rem;
+      height: 1rem;
+      top: 2.4rem;
+      left: 3rem;
+    }
+
+    .crater-5 {
+      width: 1.5rem;
+      height: 1.5rem;
+      top: 4rem;
+      left: 4.8rem;
+    }
+
+    .crater-6 {
+      width: 1rem;
+      height: 1rem;
+      top: 4.8rem;
+      left: 2rem;
+    }
+
+    .crater-7 {
+      width: 1.2rem;
+      height: 1.2rem;
+      bottom: 0.5rem;
+      left: 3.5rem;
+    }
+
+    .star {
+      position: absolute;
+      display: inline-block;
+      border-radius: 50%;
+      background: var(--background-white);
+      box-shadow: 0.1rem 0 0.2rem 0.2rem var(--background-white);
+    }
+
+    .star-1 {
+      width: 0.6rem;
+      height: 0.6rem;
+      right: 9rem;
+      bottom: 4rem;
+    }
+
+    .star-2 {
+      width: 0.8rem;
+      height: 0.8rem;
+      right: 7rem;
+      top: 1rem;
+    }
+
+    .star-3 {
+      width: 0.5rem;
+      height: 0.5rem;
+      right: 6rem;
+      bottom: 1.5rem;
+    }
+
+    .star-4 {
+      width: 0.3rem;
+      height: 0.3rem;
+      right: 4rem;
+      bottom: 5rem;
+    }
+
+    .star-5 {
+      width: 0.4rem;
+      height: 0.4rem;
+      right: 1rem;
+      bottom: 3.5rem;
+    }
+
+    .star-6,
+    .star-7,
+    .star-8 {
+      width: 1rem;
+      height: 0.2rem;
+      border-radius: 0.2rem;
+      transform: rotate(-45deg);
+      box-shadow: 0.5rem 0 0.4rem 0.1rem var(--background-white);
+      animation-name: travel;
+      animation-duration: 1.5s;
+      animation-timing-function: ease-out;
+      animation-iteration-count: infinite;
+    }
+
+    .star-6 {
+      right: 3rem;
+      bottom: 3rem;
+      animation-delay: -2s;
+    }
+
+    .star-7 {
+      right: 5rem;
+      bottom: 6rem;
+    }
+
+    .star-8 {
+      right: 9rem;
+      top: 1rem;
+      animation-delay: -4s;
+    }
+
+    @keyframes travel {
+      0% {
+        transform: rotate(-45deg) translateX(7rem);
+      }
+
+      50% {
+        transform: rotate(-45deg) translateX(-2rem);
+        box-shadow: 5rem 0rem 6rem 1rem #fff;
+      }
+
+      100% {
+        transform: rotate(-45deg) translateX(-3rem);
+        width: 0.2rem;
+        height: 0.2rem;
+        opacity: 0;
+        box-shadow: none;
+      }
+    }
+
+    #hide-checkbox:checked + .toggle {
+      background: var(--background-blue);
+    }
+
+    #hide-checkbox:checked + .toggle .toggle-button {
+      background: var(--background-light-blue);
+      transform: translateX(10.2rem);
+      box-shadow: 0 0 3.5rem 0.5rem var(--background-white);
+    }
+
+    #hide-checkbox:checked + .toggle .toggle-button .crater {
+      transform: rotate(-45deg) translateX(7rem);
+    }
+
+    #hide-checkbox:checked + .toggle .star {
+      animation: move 2s infinite;
+      transform: none;
+      box-shadow: none;
+    }
+
+    #hide-checkbox:checked + .toggle .star-1 {
+      width: 4rem;
+      height: 1rem;
+      border-radius: 1rem;
+      background: var(--background-white);
+      left: 2rem;
+      top: 2.5rem;
+      box-shadow: none;
+    }
+
+    #hide-checkbox:checked + .toggle .star-2 {
+      width: 1.2rem;
+      height: 1.2rem;
+      background: var(--background-white);
+      left: 2.6rem;
+      top: 2.3rem;
+      box-shadow: -0.1rem 0 0.2rem 0 var(--background-dark-light);
+    }
+
+    #hide-checkbox:checked + .toggle .star-3 {
+      width: 1.6rem;
+      height: 1.6rem;
+      background: var(--background-white);
+      left: 3.5rem;
+      top: 1.9rem;
+      box-shadow: -0.1rem 0 0.2rem 0 var(--background-dark-light);
+    }
+
+    #hide-checkbox:checked + .toggle .star-4 {
+      width: 1.4rem;
+      height: 1.4rem;
+      background: var(--background-white);
+      left: 4.6rem;
+      top: 2.1rem;
+      box-shadow: -0.1rem 0 0.2rem 0 var(--background-dark-light);
+    }
+
+    #hide-checkbox:checked + .toggle .star-5 {
+      width: 6rem;
+      height: 1.5rem;
+      border-radius: 1.5rem;
+      background: var(--background-white);
+      left: 3rem;
+      bottom: 2rem;
+      box-shadow: none;
+    }
+
+    #hide-checkbox:checked + .toggle .star-6 {
+      width: 1.8rem;
+      height: 1.8rem;
+      background: var(--background-white);
+      border-radius: 50%;
+      left: 3.8rem;
+      bottom: 2rem;
+      box-shadow: -0.1rem 0 0.2rem 0 var(--background-dark-light);
+    }
+
+    #hide-checkbox:checked + .toggle .star-7 {
+      width: 2.4rem;
+      height: 2.4rem;
+      background: var(--background-white);
+      border-radius: 50%;
+      left: 5.2rem;
+      bottom: 2rem;
+      box-shadow: -0.1rem 0 0.2rem 0 var(--background-dark-light);
+    }
+
+    #hide-checkbox:checked + .toggle .star-8 {
+      width: 2.1rem;
+      height: 2.1rem;
+      background: var(--background-white);
+      border-radius: 50%;
+      left: 7rem;
+      top: 5.9rem;
+      box-shadow: -0.1rem 0 0.2rem 0 var(--background-dark-light);
+    }
+
+    @keyframes move {
+      0%,
+      100% {
+        transform: translateX(-0.5rem);
+      }
+      50% {
+        transform: translateX(1rem);
+      }
+    }
+
+    p {
+      text-align: center;
+      letter-spacing: 1.5rem;
+      background: var(--background-blue-dark);
+      color: var(--background-white);
+    }
+
+    p.morning {
+      background: var(--background-orange);
+    }
+  }
+}

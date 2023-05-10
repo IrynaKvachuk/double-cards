@@ -1,0 +1,14 @@
+.theme {
+  display: grid;
+  height: 100dvh;
+  width: 100dvw;
+  color: $color-font-dark-gray;
+  background: url('../../../../public/background/lightBackground.jpg') no-repeat;
+  background-size: cover;
+
+  &--dark {
+    color: $color-font-light-gray;
+    background: url('../../../../public/background/darkBackground.jpg') no-repeat;
+    background-size: cover;
+  }
+}
