@@ -4,13 +4,13 @@ import ReloadGame from './actions/ReloadGame';
 
 type Props = {};
 
-const ToolbarTop: React.FC<Props> = () => {
+const ToolbarMain: React.FC<Props> = () => {
   return (
-    <section className="double-cards_toolbar-top">
-      <div className="double-cards_toolbar-top__info">
+    <section className="double-cards_toolbar-main">
+      <div className="double-cards_toolbar-main__info">
         <GameState />
       </div>
-      <div className="double-cards_toolbar-top__actions">
+      <div className="double-cards_toolbar-main__actions">
         <GridResize />
         <ReloadGame />
       </div>
@@ -18,4 +18,4 @@ const ToolbarTop: React.FC<Props> = () => {
   );
 };
 
-export default ToolbarTop;
+export default ToolbarMain;

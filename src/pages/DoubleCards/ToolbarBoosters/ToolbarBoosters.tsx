@@ -1,12 +1,12 @@
 import Container from '../../../layout/Container';
 import ShowAll from './ShowAll';
 
-const ToolbarRight = () => {
+const ToolbarBoosters = () => {
   return (
-    <Container classList="toolbar-right">
+    <Container classList="toolbar-boosters">
       <ShowAll />
     </Container>
   );
 };
 
-export default ToolbarRight;
+export default ToolbarBoosters;

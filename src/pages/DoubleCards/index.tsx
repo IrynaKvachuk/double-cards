@@ -5,11 +5,11 @@ import { openModal } from '../../features/Modal/ModalActions';
 import { selectModal } from '../../features/Modal/ModalSelects';
 import { useEffectOnce } from '../../hooks/UseEffectOnce';
 import Container from '../../layout/Container';
-import ToolbarTop from './ToolbarTop';
+import ToolbarMain from './ToolbarMain/ToolbarMain';
 import { getPrevSettings, reloadGame } from './utils';
 import WinPopup from './WinPopup';
 import GameTable from './GameTable';
-import ToolbarRight from './ToolbarRight';
+import ToolbarBoosters from './ToolbarBoosters/ToolbarBoosters';
 import ToolbarObstacles from './ToolbarObstacles';
 
 const DoubleCards: React.FC = () => {
@@ -31,8 +31,8 @@ const DoubleCards: React.FC = () => {
 
   return (
     <Container classList="double-cards">
-      <ToolbarTop />
-      <ToolbarRight />
+      <ToolbarMain />
+      <ToolbarBoosters />
       <GameTable />
       <ToolbarObstacles />
       {modal === 'WinPopup' ? <WinPopup /> : null}
