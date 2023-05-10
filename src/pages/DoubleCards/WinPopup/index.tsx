@@ -10,6 +10,7 @@ import Modal from '../../../layout/Modal/Modal';
 import { onClose, refreshBestResult } from './utils';
 import { Timer } from '../../../features/_common/types';
 import { initTimerValues } from '../../../features/_common/initValues';
+import { selectTheme } from '../../../features/Preferences/PreferencesSelects';
 
 export type GameResult = {
   time: Timer;
@@ -26,6 +27,7 @@ const WinPopup = () => {
   const gridSize = useSelector(selectGridSize);
   const time = useSelector(selectGameTime);
   const turns = useSelector(selectTurns);
+  const theme = useSelector(selectTheme);
 
   useEffect(() => {
     refreshBestResult({ newResult: { time, turns }, gridSize, setGameResult });
@@ -34,7 +36,7 @@ const WinPopup = () => {
   return (
     <Modal
       isOpen={isOpen}
-      className="win-popup"
+      className={`win-popup theme--${theme}`}
       onClose={() => onClose({ setIsOpen })}
       shouldCloseOnOverlayClick
     >
