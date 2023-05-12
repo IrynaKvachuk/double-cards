@@ -31,6 +31,7 @@ const GameTable: React.FC = () => {
         gridTemplateColumns: 'repeat(' + columnAmount + ',1fr)',
         gridTemplateRows: 'repeat(' + rowAmount + ',1fr)'
       }}
+      data-testid="game-table"
     >
       {cardsDeck?.map((card) => (
         <Card key={card.id} card={card} disabled={disableAllCards} />

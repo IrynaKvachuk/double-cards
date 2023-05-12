@@ -45,7 +45,7 @@ const Booster: React.FC<Props> = React.memo((props: Props) => {
   }, [date]);
 
   return (
-    <div className={`booster ${className} ${selected ? 'selected' : ''}`}>
+    <div className={`booster ${className} ${selected ? 'selected' : ''}`} data-testid="booster">
       <button
         className="game-app_btn double-cards_btn booster_btn"
         title={title}
@@ -53,7 +53,9 @@ const Booster: React.FC<Props> = React.memo((props: Props) => {
       >
         {icon}
       </button>
-      <span className="booster_count">{value}</span>
+      <span className="booster_count" title="booster count">
+        {value}
+      </span>
     </div>
   );
 });
