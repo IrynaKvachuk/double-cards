@@ -6,7 +6,7 @@
   background: url('../../../../public/background/lightBackground.jpg') no-repeat;
   background-size: cover;
 
-  &--dark {
+  &.theme--dark {
     color: $color-font-light-gray;
     background: url('../../../../public/background/darkBackground.jpg') no-repeat;
     background-size: cover;

@@ -60,10 +60,10 @@
       border: 0.2rem solid $color-background-white !important;
       box-shadow: 0 0 2rem 0.1rem $color-background-white;
       z-index: 10001;
-      filter: hue-rotate(20deg);
+      filter: var(--color-card-frozen-hue);
 
       &:active {
-        filter: grayscale(20%) hue-rotate(60deg) !important;
+        filter: var(--color-card-frozen-filter-active) !important;
       }
     }
   }
