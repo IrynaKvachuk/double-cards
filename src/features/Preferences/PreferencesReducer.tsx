@@ -1,5 +1,6 @@
 import { Reducer } from 'redux';
 import { Preferences, ThemeT } from './PreferencesTypes';
+import { stringifyDataToLocalStorage, tryParseDataFromLocalStorage } from '../../utils';
 
 type PreferencesState = {
   theme: ThemeT;
@@ -11,10 +12,23 @@ const initialState: PreferencesState = {
 
 const preferencesReducer: Reducer<PreferencesState> = (state = initialState, action) => {
   switch (action.type) {
-    case Preferences.SET_THEME: {
+    case Preferences.GET_PREFERENCES: {
       return {
         ...state,
-        theme: action.payload.theme
+        ...action.payload.preferences
+      };
+    }
+    case Preferences.SET_PREFERENCE_ITEM: {
+      const preference = action.payload.preference;
+      const prevSavedPreferences = tryParseDataFromLocalStorage().preferences;
+
+      stringifyDataToLocalStorage({
+        preferences: { ...prevSavedPreferences, ...preference }
+      });
+
+      return {
+        ...state,
+        ...preference
       };
     }
     default:

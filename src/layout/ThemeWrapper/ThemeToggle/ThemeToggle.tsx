@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
 import { ThemeT } from '../../../features/Preferences/PreferencesTypes';
-import { setTheme } from '../../../features/Preferences/PreferencesActions';
+import { onToggleChange } from './events';
 
 type Props = {
   theme: ThemeT;
@@ -9,7 +8,6 @@ type Props = {
 
 const ThemeToggle: React.FC<Props> = (props: Props) => {
   const { theme } = props;
-  const dispatch = useDispatch();
 
   const [checked, setChecked] = useState<boolean>(false);
 
@@ -25,7 +23,7 @@ const ThemeToggle: React.FC<Props> = (props: Props) => {
           id="hide-checkbox"
           checked={checked}
           value="theme-checkbox"
-          onChange={() => dispatch(setTheme(theme === 'light' ? 'dark' : 'light'))}
+          onChange={(event) => onToggleChange({ event, prevTheme: theme })}
         />
         <label htmlFor="hide-checkbox" className="toggle">
           <span className="toggle-button">

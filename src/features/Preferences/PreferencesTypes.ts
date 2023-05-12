@@ -1,12 +1,22 @@
 export type ThemeT = 'light' | 'dark';
 
+export interface PreferencesIF {
+  theme: ThemeT;
+}
+
 export enum Preferences {
-  SET_THEME = 'DOUBLE_CARDS/SET_THEME'
+  GET_PREFERENCES = 'DOUBLE_CARDS/GET_PREFERENCES',
+  SET_PREFERENCE_ITEM = 'DOUBLE_CARDS/SET_PREFERENCE_ITEM'
 }
 
-interface SetTheme {
-  type: typeof Preferences.SET_THEME;
-  payload: { theme: ThemeT };
+interface GetPreferences {
+  type: typeof Preferences.GET_PREFERENCES;
+  payload: { preferences: PreferencesIF };
 }
 
-export type PreferencesType = SetTheme;
+interface SetPreferences {
+  type: typeof Preferences.SET_PREFERENCE_ITEM;
+  payload: { preference: { theme: ThemeT } };
+}
+
+export type PreferencesType = GetPreferences | SetPreferences;
