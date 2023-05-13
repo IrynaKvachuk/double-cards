@@ -15,7 +15,7 @@ const ToolbarObstacles = () => {
   }, [gameReloaded]);
 
   return showObstaclesToolbar ? (
-    <Container classList="toolbar-obstacles pulse">
+    <Container classList="toolbar-obstacles">
       <FreezeCard setShowObstaclesToolbar={setShowObstaclesToolbar} />
     </Container>
   ) : null;

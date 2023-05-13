@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 import {
   selectCardsDeck,
@@ -14,6 +14,8 @@ type Props = {
 
 const FreezeCard = (props: Props) => {
   const { setShowObstaclesToolbar } = props;
+  const obstacleElRef = useRef<HTMLSpanElement>(null);
+
   const cardsDeck = useSelector(selectCardsDeck);
   const turns = useSelector(selectTurns);
   const gameReloaded = useSelector(selectGameReloaded);
@@ -32,7 +34,7 @@ const FreezeCard = (props: Props) => {
 
   useEffect(() => {
     if (!createObstacle) return;
-    setFreezer({ freezeTimer, createObstacle, setStopFreezing, setFreezeTimer });
+    setFreezer({ obstacleElRef, freezeTimer, createObstacle, setStopFreezing, setFreezeTimer });
   }, [turns]);
 
   useEffect(() => {
@@ -40,7 +42,7 @@ const FreezeCard = (props: Props) => {
     reloadFreezer({ setStopFreezing, setCreateObstacle, setFreezeTimer });
   }, [gameReloaded]);
 
-  return createObstacle ? <span>Freeze in {freezeTimer} moves</span> : null;
+  return createObstacle ? <span ref={obstacleElRef}>Freeze in {freezeTimer} moves</span> : null;
 };
 
 export default FreezeCard;
