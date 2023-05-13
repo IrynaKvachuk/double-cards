@@ -31,3 +31,10 @@
     animation: pulse-animation 1s ease-out infinite;
   }
 }
+
+@media screen and (max-width: $breakpoint-max-small-screen) {
+  .toolbar-obstacles {
+    top: -5rem;
+    margin: 0 auto;
+  }
+}

@@ -33,8 +33,8 @@ const DoubleCards: React.FC = () => {
     <Container classList="double-cards">
       <ToolbarMain />
       <ToolbarBoosters />
-      <GameTable />
       <ToolbarObstacles />
+      <GameTable />
       {modal === 'WinPopup' ? <WinPopup /> : null}
     </Container>
   );

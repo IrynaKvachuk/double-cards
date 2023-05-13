@@ -317,3 +317,13 @@
     }
   }
 }
+
+@media screen and (max-width: $breakpoint-max-small-screen) {
+  .theme {
+    &__toggle {
+      position: fixed;
+      top: -1.6rem;
+      right: -5rem;
+    }
+  }
+}
