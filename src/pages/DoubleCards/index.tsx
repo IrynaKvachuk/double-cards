@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { selectGameFinished } from '../../features/DoubleCards/DoubleCardsSelects';
 import { openModal } from '../../features/Modal/ModalActions';
 import { selectModal } from '../../features/Modal/ModalSelects';
-import { useEffectOnce } from '../../hooks/UseEffectOnce';
+import { useEffectOnce } from '../../hooks';
 import Container from '../../layout/Container';
 import ToolbarMain from './ToolbarMain/ToolbarMain';
 import { getPrevSettings, reloadGame } from './utils';

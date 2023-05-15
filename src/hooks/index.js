@@ -1,3 +1,3 @@
-export { useEffectOnce } from './UseEffectOnce';
-export { useTimeoutFn } from './UseTimeoutFn';
-export { UseDebounce } from './UseDebounce';
+export { useEffectOnce } from './useEffectOnce/useEffectOnce';
+export { useTimeoutFn } from './useTimeoutFn/useTimeoutFn';
+export { UseDebounce } from './useDebounce/useDebounce';
