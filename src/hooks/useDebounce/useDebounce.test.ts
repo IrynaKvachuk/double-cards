@@ -15,11 +15,11 @@ describe('useDebounce', () => {
     jest.useRealTimers();
   });
 
-  it('should be defined', () => {
+  test('should be defined', () => {
     expect(useDebounce).toBeDefined();
   });
 
-  it('should return two functions', () => {
+  test('should return two functions', () => {
     // view - hook
     const view = renderHook(() => useDebounce(() => {}, 5));
 
@@ -44,7 +44,7 @@ describe('useDebounce', () => {
     ];
   }
 
-  it('should call passed function after given amount of time', () => {
+  test('should call passed function after given amount of time', () => {
     const [spy] = getHook();
 
     expect(spy).not.toHaveBeenCalled();
@@ -52,7 +52,7 @@ describe('useDebounce', () => {
     expect(spy).toHaveBeenCalledTimes(1);
   });
 
-  it('should cancel function call on unmount', () => {
+  test('should cancel function call on unmount', () => {
     const [spy, hook] = getHook();
 
     expect(spy).not.toHaveBeenCalled();
@@ -61,7 +61,7 @@ describe('useDebounce', () => {
     expect(spy).not.toHaveBeenCalled();
   });
 
-  it('first function should return actual state of debounce', () => {
+  test('first function should return actual state of debounce', () => {
     let [, hook] = getHook();
     let [isReady] = hook.result.current;
 
@@ -75,7 +75,7 @@ describe('useDebounce', () => {
     expect(isReady()).toBe(true);
   });
 
-  it('second function should cancel debounce', () => {
+  test('second function should cancel debounce', () => {
     const [spy, hook] = getHook();
     const [isReady, cancel] = hook.result.current;
 
@@ -91,7 +91,7 @@ describe('useDebounce', () => {
     expect(isReady()).toBe(null);
   });
 
-  it('should reset timeout on delay change', () => {
+  test('should reset timeout on delay change', () => {
     const [spy, hook] = getHook(50);
 
     expect(spy).not.toHaveBeenCalled();
@@ -101,7 +101,7 @@ describe('useDebounce', () => {
     expect(spy).toHaveBeenCalledTimes(1);
   });
 
-  it('should reset timeout on deps change', () => {
+  test('should reset timeout on deps change', () => {
     const [spy, hook] = getHook(50, [5, 6]);
 
     jest.advanceTimersByTime(45);
