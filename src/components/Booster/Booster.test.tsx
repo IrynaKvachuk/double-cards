@@ -1,5 +1,5 @@
 import { render, screen } from '../../test-utils';
-import user from '@testing-library/user-event';
+import userEvent from '@testing-library/user-event';
 import Booster from '.';
 import { BoosterIF } from '../../features/Boosters/BoosterTypes';
 import { BoosterNameType } from '../../features/Boosters/BoosterTypes';
@@ -16,7 +16,8 @@ const setUp = () => {
     icon: '&#9903;',
     addByDay: 5,
     className: 'showAll',
-    title: 'show all cards for 3 sec'
+    title: 'show all cards for 3 sec',
+    callback: jest.fn()
   };
 
   const utils = render(<Booster {...mockData} />);
@@ -34,18 +35,19 @@ const setUp = () => {
 };
 
 describe('Booster', () => {
-  test('renders correct', () => {
+  test('renders correctly', () => {
     const { boosterContainer, boosterButton, countSpan } = setUp();
     expect(boosterContainer).toBeInTheDocument();
     expect(boosterButton).toBeInTheDocument();
     expect(countSpan).toBeInTheDocument();
   });
 
-  test('counts booster usage', async () => {
-    user.setup();
-    const { boosterContainer, boosterButton } = setUp();
+  test('callback has been called', async () => {
+    const user = userEvent.setup({ delay: null });
+    const { mockData, boosterContainer, boosterButton } = setUp();
 
     await user.click(boosterButton);
     expect(boosterContainer).toHaveClass('selected');
+    expect(mockData.callback).toHaveBeenCalledTimes(1);
   });
 });
