@@ -16,6 +16,7 @@ const loadPrevPreferences = (prevPreferences: PreferencesIF) => {
 
 const loadPrevBoosters = (prevBoosters: Array<BoosterIF>) => {
   if (prevBoosters) {
+    // eslint-disable-next-line no-unused-vars
     for (const [key, value] of Object.entries(prevBoosters)) {
       const booster = value as BoosterIF;
       store.dispatch(setBooster(booster));

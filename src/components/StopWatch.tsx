@@ -25,6 +25,8 @@ const Stopwatch: React.FC<Props> = React.memo((props: Props) => {
     }
 
     return () => clearInterval(intervalId);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [runTimer]);
 
   useEffect(() => {

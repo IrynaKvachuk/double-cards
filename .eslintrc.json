@@ -10,7 +10,8 @@
         "eslint:recommended",
         "plugin:react/recommended",
         "plugin:@typescript-eslint/eslint-recommended",
-        "plugin:prettier/recommended"
+        "plugin:prettier/recommended",
+        "plugin:react/recommended"
     ],
     "overrides": [],
     "parser": "@typescript-eslint/parser",
@@ -34,15 +35,10 @@
         "react-hooks/rules-of-hooks": "error",
         "react-hooks/exhaustive-deps": "warn",
         "react/react-in-jsx-scope": "off",
-        // "no-unused-vars": [
-        //     "warn",
-        //     {
-        //         "varsIgnorePattern": "effectOnceValue"
-        //     }
-        // ],
-        "no-unused-vars": "off",
-        "@typescript-eslint/no-unused-vars": [
-            "warn"
-        ]
+        "@typescript-eslint/no-unused-vars": "off",
+        "no-unused-vars": "off"
+        // "@typescript-eslint/no-unused-vars": [
+        //     "warn"
+        // ]
     }
 }

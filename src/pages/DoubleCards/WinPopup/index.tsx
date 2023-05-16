@@ -31,7 +31,7 @@ const WinPopup = () => {
 
   useEffect(() => {
     refreshBestResult({ newResult: { time, turns }, gridSize, setGameResult });
-  }, [time, turns]);
+  }, [time, turns, gridSize]);
 
   return (
     <Modal

@@ -30,11 +30,13 @@ const FreezeCard = (props: Props) => {
     const createObstacle = isLargeGrid && !stopFreezing;
     setCreateObstacle(createObstacle);
     setShowObstaclesToolbar(createObstacle);
-  }, [cardsDeck, stopFreezing]);
+  }, [cardsDeck, stopFreezing, setShowObstaclesToolbar]);
 
   useEffect(() => {
     if (!createObstacle) return;
     setFreezer({ obstacleElRef, freezeTimer, createObstacle, setStopFreezing, setFreezeTimer });
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [turns]);
 
   useEffect(() => {

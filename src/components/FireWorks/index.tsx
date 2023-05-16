@@ -45,6 +45,8 @@ const FireWorks = () => {
   useEffect(() => {
     if (!cContext) return;
     runFireworks({ cContext, cWidth, cHeight, shells, pathes });
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cContext]);
 
   return <canvas ref={canvas} className="fireworks"></canvas>;

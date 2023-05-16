@@ -42,6 +42,8 @@ const Booster: React.FC<Props> = React.memo((props: Props) => {
         date: new Date()
       })
     );
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [date]);
 
   return (
