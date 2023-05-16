@@ -31,13 +31,14 @@
     "type-check": "tsc --pretty --noEmit",
     "lint": "eslint --ignore-path .gitignore .",
     "lint:fix": "eslint --fix",
-    "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc"
+    "format": "prettier --ignore-path .gitignore --write './**/*.{js,jsx,ts,tsx,css,scss,md,json}' --config ./.prettierrc"
   },
   "eslintConfig": {
     "extends": [
       "react-app",
       "react-app/jest",
-      "plugin:jest-dom/recommended"
+      "plugin:jest-dom/recommended",
+      "eslint-config-prettier"
     ]
   },
   "browserslist": {
@@ -64,7 +65,7 @@
     "@typescript-eslint/eslint-plugin": "^5.52.0",
     "@typescript-eslint/parser": "^5.52.0",
     "eslint": "^8.34.0",
-    "eslint-config-prettier": "^8.6.0",
+    "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-jest-dom": "^4.0.3",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "^7.32.2",
