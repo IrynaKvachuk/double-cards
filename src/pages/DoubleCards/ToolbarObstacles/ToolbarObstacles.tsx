@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import Container from '../../../layout/Container';
-import FreezeCard from './FreezeCard';
+import FreezeCard from './FreezeCard/FreezeCard';
 import { selectGameReloaded } from '../../../features/DoubleCards/DoubleCardsSelects';
 import { useSelector } from 'react-redux';
 
