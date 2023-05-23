@@ -10,6 +10,7 @@ type Props = {
   title?: string;
   loading?: boolean;
   showLoader?: boolean;
+  className?: string;
   children?: ReactNode;
   onClick?: (props: Object) => void;
 };
@@ -21,6 +22,7 @@ const ButtonWrapper = forwardRef<Ref, Props>((props, ref) => {
     title = 'button',
     loading = false,
     showLoader = true,
+    className = '',
     children,
     onClick = () => {},
     ...rest
@@ -37,7 +39,7 @@ const ButtonWrapper = forwardRef<Ref, Props>((props, ref) => {
     <ItemWrapper>
       <button
         ref={ref}
-        className="game-app_btn double-cards_btn"
+        className={`game-app_btn double-cards_btn ${className}`}
         title={title}
         type={type}
         onClick={(event) => clickButton({ event, setIsLoading, onClick, ...rest })}
