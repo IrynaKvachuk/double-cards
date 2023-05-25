@@ -14,7 +14,7 @@ const initialState: ObstaclesState = {
 const obstaclesReducer: Reducer<ObstaclesState> = (state = initialState, action) => {
   switch (action.type) {
     case OBSTACLES.SET_OBSTACLE: {
-      const obstacleType: ObstacleNameType = action.payload.obstacle.type;
+      const obstacleType: ObstacleNameType = action.payload.obstacleData.type;
       const refreshedObstacle = { ...state[obstacleType], ...action.payload.obstacle };
 
       return {
