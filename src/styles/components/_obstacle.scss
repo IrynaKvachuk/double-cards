@@ -1,0 +1,26 @@
+.obstacle {
+  position: relative;
+  margin: 0.2rem 0.6rem;
+
+  &_btn {
+    border-radius: 40%;
+    cursor: none;
+    pointer-events: none;
+
+    &.pulse {
+      -webkit-animation: pulse-animation 1s ease-out infinite;
+      animation: pulse-animation 1s ease-out infinite;
+    }
+  }
+  &_count {
+    position: absolute;
+    bottom: -0.5rem;
+    right: 0;
+  }
+
+  &.active {
+    .obstacle_btn {
+      background-color: var(--color-btn-obstacle);
+    }
+  }
+}
