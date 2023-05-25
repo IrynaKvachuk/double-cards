@@ -2,20 +2,6 @@ import { freezeCard } from '../../../../features/DoubleCards/DoubleCardsActions'
 import { DispatchT, SetStateAction } from '../../../../features/_common/types';
 import store from '../../../../store';
 
-type SetPulseAnimation = {
-  obstacleEl: HTMLSpanElement;
-  visible: boolean;
-};
-
-const setPulseAnimation = (props: SetPulseAnimation) => {
-  const { obstacleEl, visible } = props;
-  if (!obstacleEl) return;
-  const obstacleContainer = obstacleEl.closest('.toolbar-obstacles') as HTMLElement;
-
-  if (visible) return obstacleContainer.classList.add('pulse');
-  return obstacleContainer.classList.remove('pulse');
-};
-
 type DisableFreezer = {
   setStopFreezing: DispatchT<SetStateAction<boolean>>;
 };
@@ -39,7 +25,7 @@ const freezeRandomCard = () => {
 };
 
 type SetFreezer = {
-  obstacleElRef: React.RefObject<HTMLSpanElement>;
+  // obstacleElRef: React.RefObject<HTMLSpanElement>;
   freezeTimer: number;
   createObstacle: boolean;
   setStopFreezing: DispatchT<SetStateAction<boolean>>;
@@ -47,19 +33,19 @@ type SetFreezer = {
 };
 
 export const setFreezer = (props: SetFreezer) => {
-  const { obstacleElRef, freezeTimer, setStopFreezing, setFreezeTimer } = props;
+  const { freezeTimer, setStopFreezing, setFreezeTimer } = props;
   const stopFreezing = disableFreezer({ setStopFreezing });
-  const obstacleEl = obstacleElRef?.current as HTMLSpanElement;
+  // const obstacleEl = obstacleElRef?.current as HTMLSpanElement;
 
   if (freezeTimer === 2) {
-    setPulseAnimation({ obstacleEl, visible: true });
+    // setPulseAnimation({ obstacleEl, visible: true });
     store.dispatch(freezeCard({ cardIndex: 0, toFreeze: false }));
   }
 
   if (stopFreezing) return store.dispatch(freezeCard({ cardIndex: 0, toFreeze: false }));
 
   if (freezeTimer === 1) {
-    setPulseAnimation({ obstacleEl, visible: false });
+    // setPulseAnimation({ obstacleEl, visible: false });
     freezeRandomCard();
     setFreezeTimer(0);
     return setTimeout(() => setFreezeTimer(3), 500);

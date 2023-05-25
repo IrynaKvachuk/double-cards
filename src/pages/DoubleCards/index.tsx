@@ -10,7 +10,7 @@ import { getPrevSettings, reloadGame } from './utils';
 import WinPopup from './WinPopup';
 import GameTable from './GameTable';
 import ToolbarBoosters from './ToolbarBoosters/ToolbarBoosters';
-import ToolbarObstacles from './ToolbarObstacles';
+import ToolbarObstacles from './ToolbarObstacles/ToolbarObstacles';
 
 const DoubleCards: React.FC = () => {
   const dispatch = useDispatch();

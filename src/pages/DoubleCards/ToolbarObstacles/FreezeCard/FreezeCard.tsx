@@ -7,6 +7,8 @@ import {
 } from '../../../../features/DoubleCards/DoubleCardsSelects';
 import { reloadFreezer, setFreezer } from './utils';
 import { DispatchT, SetStateAction } from '../../../../features/_common/types';
+import Obstacle from '../../../../components/Obstacle/Obstacle';
+import { selectFreezeObstacle } from '../../../../features/Obstacles/ObstaclesSelects';
 
 type Props = {
   setShowObstaclesToolbar: DispatchT<SetStateAction<boolean>>;
@@ -19,6 +21,7 @@ const FreezeCard = (props: Props) => {
   const cardsDeck = useSelector(selectCardsDeck);
   const turns = useSelector(selectTurns);
   const gameReloaded = useSelector(selectGameReloaded);
+  const obstacleData = useSelector(selectFreezeObstacle);
 
   const [createObstacle, setCreateObstacle] = useState<boolean>(false);
   const [freezeTimer, setFreezeTimer] = useState<number>(3);
@@ -34,7 +37,7 @@ const FreezeCard = (props: Props) => {
 
   useEffect(() => {
     if (!createObstacle) return;
-    setFreezer({ obstacleElRef, freezeTimer, createObstacle, setStopFreezing, setFreezeTimer });
+    // setFreezer({ freezeTimer, createObstacle, setStopFreezing, setFreezeTimer });
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [turns]);
@@ -44,7 +47,9 @@ const FreezeCard = (props: Props) => {
     reloadFreezer({ setStopFreezing, setCreateObstacle, setFreezeTimer });
   }, [gameReloaded]);
 
-  return createObstacle ? <span ref={obstacleElRef}>Freeze in {freezeTimer} moves</span> : null;
+  return createObstacle ? (
+    <Obstacle obstacleData={obstacleData} icon="&#10054;" title="freeze card for 2 turns" />
+  ) : null;
 };
 
 export default FreezeCard;
