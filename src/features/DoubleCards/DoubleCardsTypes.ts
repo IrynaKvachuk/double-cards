@@ -1,4 +1,5 @@
 import { CardsDeck, CardType } from '../Card/CardTypes';
+import { ObstacleNameType } from '../Obstacles/ObstaclesTypes';
 import { Timer } from '../_common/types';
 
 export enum DOUBLE_CARDS {
@@ -13,13 +14,16 @@ export enum DOUBLE_CARDS {
   DISABLE_ALL_CARDS = 'DOUBLE_CARDS/DISABLE_ALL_CARDS',
   FREEZE_CARD = 'DOUBLE_CARDS/FREEZE_CARD',
   SET_BOOSTER = 'DOUBLE_CARDS/SET_BOOSTER',
-  SHOW_ALL_CARDS = 'DOUBLE_CARDS/SHOW_ALL_CARDS'
+  SHOW_ALL_CARDS = 'DOUBLE_CARDS/SHOW_ALL_CARDS',
+  SET_OBSTACLE = 'DOUBLE_CARDS/SET_OBSTACLE'
 }
 
 export type GridSize = {
   columnAmount: number;
   rowAmount: number;
 };
+
+export type UsedObstacle = ObstacleNameType | '';
 
 interface SetGridSize {
   type: typeof DOUBLE_CARDS.SET_GRID_SIZE;
@@ -75,6 +79,11 @@ interface ShowAllCards {
   payload: { showAll: boolean };
 }
 
+interface SetObstacle {
+  type: typeof DOUBLE_CARDS.SET_OBSTACLE;
+  payload: { obstacleName: UsedObstacle };
+}
+
 export type DoubleCardsTypes =
   | SetGridSize
   | SetCardsDeck
@@ -86,4 +95,5 @@ export type DoubleCardsTypes =
   | MatchCards
   | DisableAllCards
   | FreezeCard
-  | ShowAllCards;
+  | ShowAllCards
+  | SetObstacle;

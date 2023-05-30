@@ -1,6 +1,6 @@
 import { Reducer } from 'redux';
 import { CardsDeck, CardSide, CardType } from '../Card/CardTypes';
-import { DOUBLE_CARDS, GridSize } from './DoubleCardsTypes';
+import { DOUBLE_CARDS, GridSize, UsedObstacle } from './DoubleCardsTypes';
 import { Timer } from '../_common/types';
 import { initTimerValues } from '../_common/initValues';
 
@@ -16,6 +16,7 @@ export type DoubleCardsState = {
   disableAll: boolean;
   gameReloaded: number;
   gameFinished: boolean;
+  usedObstacle: UsedObstacle;
 };
 
 const initialState: DoubleCardsState = {
@@ -29,7 +30,8 @@ const initialState: DoubleCardsState = {
   activeCardsIndexes: [],
   disableAll: false,
   gameReloaded: 0,
-  gameFinished: false
+  gameFinished: false,
+  usedObstacle: ''
 };
 
 const doubleCardsReducer: Reducer<DoubleCardsState> = (state = initialState, action) => {
@@ -107,6 +109,8 @@ const doubleCardsReducer: Reducer<DoubleCardsState> = (state = initialState, act
         cardsDeck
       };
     }
+    case DOUBLE_CARDS.SET_OBSTACLE:
+      return { ...state, usedObstacle: action.payload.obstacleName };
     default:
       return state;
   }

@@ -12,6 +12,11 @@
   font-size: 1.5rem;
   border: 0.2rem solid var(--color-shadow-secondary) !important;
 
+  &.disabled {
+    filter: grayscale(100);
+    opacity: 40%;
+  }
+
   &.game-app_container {
     border-radius: 2rem;
     box-shadow: 0 0 2rem 0 rgba(0, 0, 0, 0.1);

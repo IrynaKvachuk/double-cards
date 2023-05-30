@@ -1,6 +1,6 @@
 import { CardsDeck, CardType } from '../Card/CardTypes';
 import { Timer } from '../_common/types';
-import { DoubleCardsTypes, DOUBLE_CARDS, GridSize } from './DoubleCardsTypes';
+import { DoubleCardsTypes, DOUBLE_CARDS, GridSize, UsedObstacle } from './DoubleCardsTypes';
 
 export const setGridSize = (input: GridSize): DoubleCardsTypes => ({
   type: DOUBLE_CARDS.SET_GRID_SIZE,
@@ -54,4 +54,9 @@ export const freezeCard = (input: { cardIndex: number; toFreeze: boolean }): Dou
 export const showAllCards = (input: boolean): DoubleCardsTypes => ({
   type: DOUBLE_CARDS.SHOW_ALL_CARDS,
   payload: { showAll: input }
+});
+
+export const setObstacle = (input: UsedObstacle): DoubleCardsTypes => ({
+  type: DOUBLE_CARDS.SET_OBSTACLE,
+  payload: { obstacleName: input }
 });
