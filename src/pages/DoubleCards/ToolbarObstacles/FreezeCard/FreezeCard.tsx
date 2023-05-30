@@ -1,55 +1,41 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import {
-  selectCardsDeck,
-  selectGameReloaded,
-  selectTurns
-} from '../../../../features/DoubleCards/DoubleCardsSelects';
-import { reloadFreezer, setFreezer } from './utils';
-import { DispatchT, SetStateAction } from '../../../../features/_common/types';
+import { setFreezer } from './utils';
 import Obstacle from '../../../../components/Obstacle/Obstacle';
 import { selectFreezeObstacle } from '../../../../features/Obstacles/ObstaclesSelects';
+import { UsedObstacle } from '../../../../features/DoubleCards/DoubleCardsTypes';
+import { freezeCard } from '../../../../features/DoubleCards/DoubleCardsActions';
+import { useDispatch } from 'react-redux';
 
 type Props = {
-  setShowObstaclesToolbar: DispatchT<SetStateAction<boolean>>;
+  usedObstacle: UsedObstacle;
 };
 
-const FreezeCard = (props: Props) => {
-  const { setShowObstaclesToolbar } = props;
-  const obstacleElRef = useRef<HTMLSpanElement>(null);
+const FreezeCard: React.FC<Props> = (props: Props) => {
+  const { usedObstacle } = props;
+  const dispatch = useDispatch();
 
-  const cardsDeck = useSelector(selectCardsDeck);
-  const turns = useSelector(selectTurns);
-  const gameReloaded = useSelector(selectGameReloaded);
   const obstacleData = useSelector(selectFreezeObstacle);
 
-  const [createObstacle, setCreateObstacle] = useState<boolean>(false);
-  const [freezeTimer, setFreezeTimer] = useState<number>(3);
-  const [stopFreezing, setStopFreezing] = useState<boolean>(false);
+  const [freezeTimer, setFreezeTimer] = useState<number>(-1);
 
-  // add only for grids more than 2x3
-  useEffect(() => {
-    const isLargeGrid = cardsDeck.length > 6;
-    const createObstacle = isLargeGrid && !stopFreezing;
-    setCreateObstacle(createObstacle);
-    setShowObstaclesToolbar(createObstacle);
-  }, [cardsDeck, stopFreezing, setShowObstaclesToolbar]);
+  const getFireCount = (fireCount: number) => setFreezeTimer(fireCount);
 
   useEffect(() => {
-    if (!createObstacle) return;
-    // setFreezer({ freezeTimer, createObstacle, setStopFreezing, setFreezeTimer });
-
+    if (freezeTimer === -1) return;
+    if (usedObstacle === 'freeze') setFreezer({ freezeTimer });
+    if (usedObstacle !== 'freeze') dispatch(freezeCard({ cardIndex: 0, toFreeze: false }));
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [turns]);
+  }, [freezeTimer]);
 
-  useEffect(() => {
-    if (!gameReloaded) return;
-    reloadFreezer({ setStopFreezing, setCreateObstacle, setFreezeTimer });
-  }, [gameReloaded]);
-
-  return createObstacle ? (
-    <Obstacle obstacleData={obstacleData} icon="&#10054;" title="freeze card for 2 turns" />
-  ) : null;
+  return (
+    <Obstacle
+      obstacleData={obstacleData}
+      icon="&#10054;"
+      title="freeze card for 2 turns"
+      getFireCount={getFireCount}
+    />
+  );
 };
 
 export default FreezeCard;
