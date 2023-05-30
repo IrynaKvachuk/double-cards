@@ -9,7 +9,6 @@ type SetPulseAnimation = {
 const setPulseAnimation = (props: SetPulseAnimation) => {
   const { obstacleEl, visible } = props;
   if (!obstacleEl) return;
-  // const obstacleContainer = obstacleEl.closest('.toolbar-obstacles') as HTMLElement;
 
   if (visible) return obstacleEl.classList.add('pulse');
   return obstacleEl.classList.remove('pulse');
@@ -22,14 +21,21 @@ type SetObstacle = {
   setFireCount: DispatchT<SetStateAction<number>>;
 };
 
+// obstacle count and actions after turn
 export const setObstacle = (props: SetObstacle) => {
-  const { obstacleElRef, obstacleData, fireCount } = props;
-  const initFireCount = obstacleData.fireCount;
+  const { obstacleElRef, obstacleData, fireCount, setFireCount } = props;
   const obstacleEl = obstacleElRef?.current as HTMLDivElement;
 
-  if (fireCount === initFireCount - 1) setPulseAnimation({ obstacleEl, visible: true });
-  if (fireCount === 1) {
-    setPulseAnimation({ obstacleEl, visible: false });
-    return;
+  if (fireCount === 2) {
+    setPulseAnimation({ obstacleEl, visible: true });
   }
+  if (fireCount === 1) {
+    setFireCount(0);
+    return setTimeout(() => {
+      setFireCount(obstacleData.fireCount);
+      setPulseAnimation({ obstacleEl, visible: false });
+    }, 500);
+  }
+
+  setFireCount((prevValue) => prevValue - 1);
 };

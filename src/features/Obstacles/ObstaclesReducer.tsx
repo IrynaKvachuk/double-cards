@@ -7,19 +7,15 @@ export type ObstaclesState = {
 };
 
 const initialState: ObstaclesState = {
-  freeze: { type: 'freeze', fireCount: 3, useObstacle: false },
-  shuffle: { type: 'shuffle', fireCount: 4, useObstacle: false }
+  freeze: { type: 'freeze', fireCount: 3 },
+  shuffle: { type: 'shuffle', fireCount: 4 }
 };
 
 const obstaclesReducer: Reducer<ObstaclesState> = (state = initialState, action) => {
   switch (action.type) {
-    case OBSTACLES.SET_OBSTACLE: {
-      const obstacleType: ObstacleNameType = action.payload.obstacleData.type;
-      const refreshedObstacle = { ...state[obstacleType], ...action.payload.obstacle };
-
+    case OBSTACLES.RESET_OBSTACLES: {
       return {
-        ...state,
-        obstacle: refreshedObstacle
+        ...initialState
       };
     }
     default:

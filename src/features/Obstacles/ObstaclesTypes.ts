@@ -1,18 +1,16 @@
 export type ObstacleNameType = 'freeze' | 'shuffle';
 
 export enum OBSTACLES {
-  SET_OBSTACLE = 'DOUBLE_CARDS/TOOGLE_OBSTACLE'
+  RESET_OBSTACLES = 'DOUBLE_CARDS/RESET_OBSTACLES'
 }
 
 export interface ObstacleIF {
   type: ObstacleNameType;
-  useObstacle: boolean;
   fireCount: number;
 }
 
-interface ToogleObstacle {
-  type: typeof OBSTACLES.SET_OBSTACLE;
-  payload: { obstacleData: { type: ObstacleNameType; useObstacle: boolean } };
+interface ResetObstacles {
+  type: typeof OBSTACLES.RESET_OBSTACLES;
 }
 
-export type ObstaclesType = ToogleObstacle;
+export type ObstaclesType = ResetObstacles;
