@@ -44,6 +44,7 @@ $color-modal-overlay: rgba(94, 94, 94, 0.25);
 
   --color-btn-main: rgba(23, 158, 237, 0.5);
   --color-btn-secondary: rgba(238, 234, 29, 0.7);
+  --color-font-btn: rgba(194, 194, 194, 0.8);
   --color-btn-obstacle: rgb(55, 217, 250);
 
   --color-shadow-primary: rgba(255, 255, 255, 0.7);
@@ -78,13 +79,14 @@ $color-modal-overlay: rgba(94, 94, 94, 0.25);
         rgb(248, 232, 10) 90%
       );
 
-      --color-font-main: rgba(219, 213, 225, 0.8);
+      --color-font-main: rgba(219, 213, 225, 0.9);
       --color-font-secondary: rgba(232, 232, 230, 0.8);
       --color-font-win: rgb(241, 241, 241);
       --color-font-info: rgba(40, 175, 248, 0.8);
 
       --color-btn-main: rgba(108, 107, 109, 0.8);
       --color-btn-secondary: rgba(27, 12, 41, 1);
+      --color-font-btn: rgba(255, 255, 255, 0.9);
       --color-btn-obstacle: rgb(250, 124, 55);
 
       --color-shadow-primary: rgba(27, 12, 41, 0.7);

@@ -13,6 +13,11 @@
     right: 0;
   }
 
+  &.highlight {
+    -webkit-animation: highlight-animation 0.4s ease-out infinite;
+    animation: highlight-animation 0.4s ease-out infinite;
+  }
+
   &.pulse {
     -webkit-animation: pulse-animation 1s ease-out infinite;
     animation: pulse-animation 1s ease-out infinite;

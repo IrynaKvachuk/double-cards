@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { ButtonWrapper } from '../_basic';
 import { ObstacleIF } from '../../features/Obstacles/ObstaclesTypes';
-import { setObstacle } from './utils';
+import { setHighlightAnimation, setObstacle } from './utils';
 import { useSelector } from 'react-redux';
 import {
   selectGameReloaded,
@@ -40,7 +40,9 @@ const Obstacle: React.FC<Props> = (props: Props) => {
     const useObstacle = usedObstacle === type;
 
     setUseObstacle(useObstacle);
-    if (useObstacle) setFireCount(obstacleData.fireCount);
+    if (!useObstacle) return;
+    setFireCount(obstacleData.fireCount);
+    setHighlightAnimation(obstacleElRef);
   }, [usedObstacle]);
 
   // obstacle count and actions after turn

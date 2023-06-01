@@ -1,18 +1,6 @@
 import { ObstacleIF } from '../../features/Obstacles/ObstaclesTypes';
 import { DispatchT, SetStateAction } from '../../features/_common/types';
-
-type SetPulseAnimation = {
-  obstacleEl: HTMLDivElement;
-  visible: boolean;
-};
-
-const setPulseAnimation = (props: SetPulseAnimation) => {
-  const { obstacleEl, visible } = props;
-  if (!obstacleEl) return;
-
-  if (visible) return obstacleEl.classList.add('pulse');
-  return obstacleEl.classList.remove('pulse');
-};
+import { setAnimation } from '../../utils';
 
 type SetObstacle = {
   obstacleElRef: React.RefObject<HTMLDivElement>;
@@ -21,19 +9,31 @@ type SetObstacle = {
   setFireCount: DispatchT<SetStateAction<number>>;
 };
 
+export const setHighlightAnimation = (elementRef: React.RefObject<HTMLDivElement>) => {
+  const element = elementRef.current;
+  if (!element) return;
+
+  setTimeout(() => {
+    setAnimation({ element, visible: true, name: 'highlight' });
+  }, 100);
+  setTimeout(() => {
+    setAnimation({ element, visible: false, name: 'highlight' });
+  }, 600);
+};
+
 // obstacle count and actions after turn
 export const setObstacle = (props: SetObstacle) => {
   const { obstacleElRef, obstacleData, fireCount, setFireCount } = props;
-  const obstacleEl = obstacleElRef?.current as HTMLDivElement;
+  const element = obstacleElRef?.current as HTMLDivElement;
 
   if (fireCount === 2) {
-    setPulseAnimation({ obstacleEl, visible: true });
+    setAnimation({ element, visible: true, name: 'pulse' });
   }
   if (fireCount === 1) {
     setFireCount(0);
     return setTimeout(() => {
       setFireCount(obstacleData.fireCount);
-      setPulseAnimation({ obstacleEl, visible: false });
+      setAnimation({ element, visible: false, name: 'pulse' });
     }, 500);
   }
 
