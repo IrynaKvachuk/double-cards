@@ -25,5 +25,7 @@ export const selectGameFinished = (state: RootStateT): boolean => state.doubleCa
 
 export const selectGameReloaded = (state: RootStateT): number => state.doubleCards.gameReloaded;
 
+export const selectNoTurnReload = (state: RootStateT): boolean => state.doubleCards.noTurnReload;
+
 export const selectUsedObstacle = (state: RootStateT): UsedObstacle =>
   state.doubleCards.usedObstacle;

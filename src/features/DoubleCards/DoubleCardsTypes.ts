@@ -12,9 +12,11 @@ export enum DOUBLE_CARDS {
   CLOSE_CARDS = 'DOUBLE_CARDS/CLEAR_CARD',
   MATCH_CARDS = 'DOUBLE_CARDS/MATCH_CARDS',
   DISABLE_ALL_CARDS = 'DOUBLE_CARDS/DISABLE_ALL_CARDS',
+  SET_NO_TURN_RELOAD = 'DOUBLE_CARDS/SET_NO_TURN_RELOAD',
   FREEZE_CARD = 'DOUBLE_CARDS/FREEZE_CARD',
   SET_BOOSTER = 'DOUBLE_CARDS/SET_BOOSTER',
   SHOW_ALL_CARDS = 'DOUBLE_CARDS/SHOW_ALL_CARDS',
+  SHUFFLE_CARDS = 'DOUBLE_CARDS/SHUFFLE_CARDS',
   SET_OBSTACLE = 'DOUBLE_CARDS/SET_OBSTACLE'
 }
 
@@ -69,9 +71,19 @@ interface DisableAllCards {
   payload: { disableAll: boolean };
 }
 
+interface SetNoTurnReload {
+  type: typeof DOUBLE_CARDS.SET_NO_TURN_RELOAD;
+  payload: { noTurnReload: boolean };
+}
+
 interface FreezeCard {
   type: typeof DOUBLE_CARDS.FREEZE_CARD;
   payload: { cardIndex: number; toFreeze: boolean };
+}
+
+interface ShuffleCards {
+  type: typeof DOUBLE_CARDS.SHUFFLE_CARDS;
+  payload: { cardsDeck: CardsDeck };
 }
 
 interface ShowAllCards {
@@ -94,6 +106,8 @@ export type DoubleCardsTypes =
   | CloseCards
   | MatchCards
   | DisableAllCards
+  | SetNoTurnReload
   | FreezeCard
+  | ShuffleCards
   | ShowAllCards
   | SetObstacle;

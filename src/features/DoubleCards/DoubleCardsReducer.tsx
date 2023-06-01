@@ -15,6 +15,7 @@ export type DoubleCardsState = {
   activeCardsIndexes: Array<number>;
   disableAll: boolean;
   gameReloaded: number;
+  noTurnReload: boolean;
   gameFinished: boolean;
   usedObstacle: UsedObstacle;
 };
@@ -30,6 +31,7 @@ const initialState: DoubleCardsState = {
   activeCardsIndexes: [],
   disableAll: false,
   gameReloaded: 0,
+  noTurnReload: false,
   gameFinished: false,
   usedObstacle: ''
 };
@@ -87,6 +89,12 @@ const doubleCardsReducer: Reducer<DoubleCardsState> = (state = initialState, act
       };
     case DOUBLE_CARDS.DISABLE_ALL_CARDS:
       return { ...state, disableAll: action.payload.disableAll };
+    case DOUBLE_CARDS.SET_NO_TURN_RELOAD:
+      return {
+        ...state,
+        disableAll: action.payload.noTurnReload,
+        noTurnReload: action.payload.noTurnReload
+      };
     case DOUBLE_CARDS.FREEZE_CARD: {
       const freezeIndex = action.payload.cardIndex;
       const cardsDeck = state.cardsDeck.map((cardFromDeck: CardType) => {
@@ -95,6 +103,14 @@ const doubleCardsReducer: Reducer<DoubleCardsState> = (state = initialState, act
       });
 
       return { ...state, cardsDeck };
+    }
+    case DOUBLE_CARDS.SHUFFLE_CARDS: {
+      return {
+        ...state,
+        disableAll: true,
+        noTurnReload: true,
+        cardsDeck: action.payload.cardsDeck
+      };
     }
     case DOUBLE_CARDS.SHOW_ALL_CARDS: {
       const showAllCards = action.payload.showAll;

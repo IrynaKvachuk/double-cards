@@ -46,9 +46,19 @@ export const disableAllCards = (input: boolean): DoubleCardsTypes => ({
   payload: { disableAll: input }
 });
 
+export const setNoTurnReload = (input: boolean): DoubleCardsTypes => ({
+  type: DOUBLE_CARDS.SET_NO_TURN_RELOAD,
+  payload: { noTurnReload: input }
+});
+
 export const freezeCard = (input: { cardIndex: number; toFreeze: boolean }): DoubleCardsTypes => ({
   type: DOUBLE_CARDS.FREEZE_CARD,
   payload: { ...input }
+});
+
+export const shuffleCards = (input: CardsDeck): DoubleCardsTypes => ({
+  type: DOUBLE_CARDS.SHUFFLE_CARDS,
+  payload: { cardsDeck: input }
 });
 
 export const showAllCards = (input: boolean): DoubleCardsTypes => ({
