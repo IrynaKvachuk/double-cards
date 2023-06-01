@@ -1,6 +1,17 @@
 .double-cards {
   &_game-table {
     display: grid;
+
+    &.shuffled {
+      & div:nth-child(odd) {
+        animation: shuffle-left-animation 0.4s ease-in-out infinite;
+        filter: drop-shadow(2px 4px 6px black) saturate(0.5) brightness(1.2);
+      }
+      & div:nth-child(even) {
+        animation: shuffle-right-animation 0.4s ease-in-out infinite;
+        filter: drop-shadow(2px 4px 6px black) saturate(0.5) brightness(1.2);
+      }
+    }
   }
 
   @media screen and (min-width: $breakpoint-max-tablet) {

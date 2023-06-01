@@ -1,0 +1,35 @@
+@keyframes shuffle-right-animation {
+  0% {
+    transform: scale(1) rotate(0deg);
+  }
+  25% {
+    transform: scale(1.01) rotate(1deg);
+  }
+  50% {
+    transform: scale(1) rotate(-2deg);
+  }
+  75% {
+    transform: scale(0.99) rotate(1deg);
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+@keyframes shuffle-left-animation {
+  0% {
+    transform: scale(1) rotate(0deg);
+  }
+  25% {
+    transform: scale(0.99) rotate(-2deg);
+  }
+  50% {
+    transform: scale(1) rotate(1deg);
+  }
+  75% {
+    transform: scale(1.01) rotate(-2deg);
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+  }
+}
