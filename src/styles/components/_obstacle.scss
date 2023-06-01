@@ -29,3 +29,11 @@
     }
   }
 }
+
+@media screen and (max-width: $breakpoint-max-small-screen) {
+  .obstacle {
+    &_count {
+      bottom: -0.1rem;
+    }
+  }
+}

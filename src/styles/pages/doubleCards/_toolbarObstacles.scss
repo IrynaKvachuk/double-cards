@@ -33,7 +33,10 @@
 
 @media screen and (max-width: $breakpoint-max-small-screen) {
   .toolbar-obstacles {
-    top: -5rem;
-    margin: 0 auto;
+    height: 6.4rem;
+    top: auto;
+    left: 0;
+    right: 0;
+    bottom: -7rem;
   }
 }

@@ -21,7 +21,7 @@
       border-radius: 2rem;
       background: var(--color-background-boosters);
       filter: none;
-      box-shadow: inset 0 0 200px rgba(255, 255, 255, 0.2);
+      box-shadow: inset 0 0 20rem rgba(255, 255, 255, 0.2);
     }
   }
 
@@ -49,17 +49,18 @@
   .toolbar-boosters {
     width: auto;
     height: 6rem;
-    top: auto;
+    top: -7rem;
     left: 0;
     right: 0;
-    bottom: -7rem;
+    bottom: 0;
     margin: 0;
     flex-direction: row;
 
     &.game-app_container {
       &:before {
         width: auto;
-        background: var(--color-background-boosters);
+        background: none;
+        box-shadow: inset 0 0 20rem var(--color-shadow-primary);
       }
     }
   }
