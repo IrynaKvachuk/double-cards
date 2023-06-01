@@ -2,10 +2,10 @@
   &.selected {
     & .booster_btn {
       background-color: $color-background-dark;
-      color: var(--color-font-main);
+      color: var(--color-font-btn);
     }
-    & .show-all_count {
-      color: var(--color-font-main);
+    & .booster_count {
+      color: var(--color-font-btn) !important;
     }
   }
 
